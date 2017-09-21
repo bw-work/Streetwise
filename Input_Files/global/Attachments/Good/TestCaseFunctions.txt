@@ -1,0 +1,64 @@
+Public Sub fillCells(howmany)
+    For i = 1 To howmany
+        Sheet1.Range("A" & i & ":" & Chr(64 + howmany) & i).Value = i
+    Next i
+End Sub
+
+Public Sub FillHeader()
+    Sheet1.Range("A1").Value = "Test Case Number"
+    Sheet1.Range("B1").Value = "Rally User Story ID"
+    Sheet1.Range("C1").Value = "Subject"
+    Sheet1.Range("D1").Value = "Description"
+    Sheet1.Range("E1").Value = "Steps Number"
+    Sheet1.Range("F1").Value = "Steps to Execute"
+    Sheet1.Range("G1").Value = "Expected Result"
+    Sheet1.Columns("A").ColumnWidth = 8.43
+    Sheet1.Columns("B").ColumnWidth = 12.29
+    Sheet1.Columns("C").ColumnWidth = 67.29
+    Sheet1.Columns("D").ColumnWidth = 57.29
+    Sheet1.Columns("E").ColumnWidth = 8.43
+    Sheet1.Columns("F").ColumnWidth = 77.43
+    Sheet1.Columns("G").ColumnWidth = 47.71
+    Sheet1.Rows(1).RowHeight = 60.74
+    Sheet1.Range("A1:G1").Font.Bold = True
+    Sheet1.Range("A1:G1").Interior.Color = RGB(217, 217, 217)
+    Sheet1.Range("A1:G1").Locked = True
+    Sheet1.Range("A1:G1").WrapText = True
+   
+End Sub
+
+Public Sub FillBody(TestCases, TestSteps)
+    For i = 1 To TestCases
+        AddTestCase TestSteps
+    Next i
+End Sub
+
+
+Public Sub AddTestCase(Steps)
+    LastTestCase = GetLastTestCase
+    LastRow = GetLastRow
+    For i = 1 To 4
+        Sheet1.Range(Chr(64 + i) & LastRow & ":" & Chr(64 + i) & (LastRow + Steps - 1)).Merge
+    Next i
+    Sheet1.Range("A" & LastRow).Value = Val(LastTestCase) + 1
+    For i = 1 To Steps
+        Sheet1.Range("E" & (i + LastRow - 1)).Value = i
+    Next i
+End Sub
+
+Public Function GetLastRow()
+    i = 1
+    Do While (Sheet1.Range("A" & i).Value <> "" Or Sheet1.Range("A" & i).MergeCells)
+        i = i + 1
+    Loop
+    GetLastRow = i
+End Function
+
+Public Function GetLastTestCase()
+    For i = GetLastRow To 1 Step -1
+        If Sheet1.Range("A" & i).Value <> "" Then
+            GetLastTestCase = Sheet1.Range("A" & i).Value
+            Exit Function
+        End If
+    Next i
+End Function

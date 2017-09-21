@@ -1,0 +1,14 @@
+
+~*~*~ Begin test with Firefox at 20170906162819 ~*~*~
+Setup
+Step 1: Setup
+Setup complete.
+1-RESULT: Setup complete.
+Gathering ideas for user Hogan, Hulk...
+'My Dashboard' was found within 'My Dashboard' as expected.
+Navigated to Dashboard
+Selected 'Read Only' from role
+Selected role Read Only
+'Published Ideas' was found within 'Published Ideas' as expected.
+
+!! ERROR IN Firefox at 20170906163137 !!: Unable to find xpath: //div[@ng-repeat='cardRow in cardRows']/..

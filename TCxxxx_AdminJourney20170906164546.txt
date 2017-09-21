@@ -1,0 +1,29 @@
+
+~*~*~ Begin test with Firefox ~*~*~
+'My Dashboard' was found within 'My Dashboard' as expected.
+Navigated to Dashboard
+Selected 'Admin' from role
+Selected role Admin
+----- Edit Result Types -----
+'Result Types' was found within 'Result Types' as expected.
+Both values are NEW RESULT 20170906164341.FIREFOX
+Typed 'New Result 20170906164341.Firefox' into name
+Both values are CARS
+Typed 'Cars' into unitOfMeasure
+Selected 'Yearly' from 
+Clicked on 'Create'
+Test for The Checkbox was set to checked, however it is still showing as unchecked. evaluating to true passed.
+Checked a CheckBox()
+Both values are 
+
+!! ERROR IN Firefox at 20170906164546 !!: Unable to find button: Edit
+
+------Browser: Firefox at 9/6/2017 4:45:46 PM------:
+Unable to find button: Edit
+   at Coypu.Timing.RetryUntilTimeoutTimingStrategy.Synchronise[TResult](Query`1 query)
+   at Coypu.DriverScope.Query[T](Query`1 query)
+   at Coypu.DriverScope.RetryUntilTimeout(BrowserAction action)
+   at Coypu.SynchronisedElementScope.Try(DriverAction action)
+   at Coypu.ElementScope.Click(Options options)
+   at AutomationCore.utility.HpgElement.Click(Int32 sleepTimeInSeconds)
+   at IdeaManagement.tests.Test_IM.<>c__DisplayClassb8.<TCxxxx_AdminJourney>b__af(KeyValuePair`2 testBrowser) in c:\Git\Streetwise\Latest\tests\Test_IM.cs:line 1189

@@ -1,0 +1,16 @@
+2013-05-07 08:34:16,227 INFO  Library.SuperTest - Starting test TestSearchFromCompany
+2013-05-07 08:34:27,453 ERROR Library.SuperTest - Library.utility.HPGElement does not exist.
+2013-05-07 08:34:27,697 INFO  Library.SuperTest - Since there was an error in the test, a screenshot was taken and saved at C:\TestData\Report20130507083427.jpg
+2013-05-07 08:34:31,318 INFO  Library.SuperTest - Ending test TestSearchFromCompany
+2013-05-07 08:34:31,320 ERROR Library.SuperTest - TestSearchFromCompany Failed
+2013-05-07 08:34:31,320 INFO  Library.SuperTest - -------------------------------------------------------------
+
+2013-05-07 08:34:37,204 INFO  Library.SuperTest - Starting test TestSearchFromHome
+2013-05-07 08:34:49,215 ERROR Library.SuperTest - Library.utility.HPGElement does not exist.
+2013-05-07 08:34:49,392 INFO  Library.SuperTest - Since there was an error in the test, a screenshot was taken and saved at C:\TestData\Report20130507083449.jpg
+2013-05-07 08:34:53,874 INFO  Library.SuperTest - Ending test TestSearchFromHome
+2013-05-07 08:34:53,874 ERROR Library.SuperTest - TestSearchFromHome Failed
+2013-05-07 08:34:53,875 INFO  Library.SuperTest - -------------------------------------------------------------
+
+2013-05-07 09:15:53,780 INFO  Library.SuperTest - Starting test TestSearchFromCompany
+2013-05-07 09:16:04,833 ERROR Library.SuperTest - Library.utility.HPGElement does not exist.
