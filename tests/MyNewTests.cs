@@ -1,10 +1,11 @@
 ﻿using NUnit.Framework;
 using AutomationCore;
 using Coypu;
-using IdeaManagement.page_objects;
+using Streetwise.page_objects;
 using System;
+using OpenQA.Selenium;
 
-namespace IdeaManagement.tests
+namespace Streetwise.tests
 {
     [TestFixture]
     public class MyNewTests : SuperTest
@@ -16,15 +17,29 @@ namespace IdeaManagement.tests
             Browser = new BrowserSession(SessConfiguration);
             Browser.MaximiseWindow();
             Browser.Visit("");
+            MyNewTestsPageObject myNewTestsPageObject = new MyNewTestsPageObject(Browser);
 
-            Login();
+            AssertPageElements(myNewTestsPageObject);
+            Login(myNewTestsPageObject);
         }
 
-        public void Login()
+        public void AssertPageElements(MyNewTestsPageObject myNewTestsPageObject)
         {
-            Browser.FillIn("UserName").With("Ben");
-            Browser.FillIn("Password").With("12345");
-            Browser.ClickButton("Login");
+            Assert.AreEqual(myNewTestsPageObject.LoginLink.Text, "LOGIN");
+            Assert.AreEqual(myNewTestsPageObject.PageTitle.Text, "Execute Automation Selenium Test Site");
+            Assert.AreEqual(myNewTestsPageObject.LoginTitle.Text, "Login");
+            Assert.AreEqual(myNewTestsPageObject.UserNameLbl.Text, "UserName  ");
+            Assert.AreEqual(myNewTestsPageObject.PasswordLbl.Text, "Password    ");
+            Assert.NotNull(myNewTestsPageObject.UserNameTxtFld);
+            Assert.NotNull(myNewTestsPageObject.PasswordTxtFld);
+            Assert.NotNull(myNewTestsPageObject.LoginBtn);
+        }
+
+        public void Login(MyNewTestsPageObject myNewTestsPageObject)
+        {
+            myNewTestsPageObject.InputUserName("Ben");
+            myNewTestsPageObject.InputPassword("1234abc");
+            myNewTestsPageObject.ClickLoginBtn();
         }
 
         [SetUp]
@@ -32,7 +47,7 @@ namespace IdeaManagement.tests
         {
             SessConfiguration = new SessionConfiguration()
             {
-                Browser = Coypu.Drivers.Browser.Chrome,
+                Browser = Coypu.Drivers.Browser.Chrome
             };
             //DisposeBrowsers();
             SessConfiguration.Match = Match.First;

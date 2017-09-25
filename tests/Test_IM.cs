@@ -8,8 +8,8 @@ using AutomationCore;
 using AutomationCore.input_objects;
 using AutomationCore.utility;
 using Coypu.Drivers;
-using IdeaManagement.Utility;
-using IdeaManagement.page_objects;
+using Streetwise.Utility;
+using Streetwise.page_objects;
 using NUnit.Framework;
 using Coypu;
 using System.Data;
@@ -19,7 +19,7 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium.Remote;
 using Match = Coypu.Match;
 
-namespace IdeaManagement.tests
+namespace Streetwise.tests
 {
     [TestFixture]
     public class Test_IM : SuperTest
@@ -196,31 +196,31 @@ namespace IdeaManagement.tests
                         #region saveIdea
                         WriteInfoReport("Submit as Standard");
                         IMHome.GotoSubmitAnIdea();
-                        page_objects.imSubmitAnIdea submitIdea = new imSubmitAnIdea(IMHome.browser);
+                        page_objects.swSubmitAnIdea submitIdea = new swSubmitAnIdea(IMHome.browser);
                         submitIdea.IdeaName.Type("Test Idea - " + nameSuffix);
                         submitIdea.IdeaDescription.Type("This is the description \r\n" + DateTime.Now.ToLongDateString());
                         submitIdea.FillOutQuestions(" browser: " + testBrowser.Key);
                         //adding attachments...
                         submitIdea.AddAttachmentsButton.Click();
-                        imSubmitAnIdea.AddAttachmentsDialog attachmentsDialog = new imSubmitAnIdea.AddAttachmentsDialog(submitIdea.AttachmentsDialog);
+                        swSubmitAnIdea.AddAttachmentsDialog attachmentsDialog = new swSubmitAnIdea.AddAttachmentsDialog(submitIdea.AttachmentsDialog);
                         Dictionary<string, string> goodFiles = GetGoodAttachments();
                         attachmentsDialog.AddAttachmentButton.Click();
-                        imSubmitAnIdea.AddAttachmentsDialog.AttachmentRow attachmentRow = attachmentsDialog.GetAttachmentRow(1);
+                        swSubmitAnIdea.AddAttachmentsDialog.AttachmentRow attachmentRow = attachmentsDialog.GetAttachmentRow(1);
                         attachmentRow.Title.Type("Submit attachment");
                         attachmentRow.LocalFile.Element.SendKeys(goodFiles.First().Value);
                         attachmentsDialog.SaveButton.Click();
                         submitIdea.SubmitSaveButton.Click(3);
                         //HpgAssert.True(submitIdea.browser.HasContent("Your Idea was saved successfully."), "Idea was saved successfully.");
-                        imIdeaDetails detailsPage = new imIdeaDetails(submitIdea.browser);
+                        swIdeaDetails detailsPage = new swIdeaDetails(submitIdea.browser);
                         HpgAssert.AreEqual("Saved", detailsPage.IdeaStatus.Text, "Verify idea is saved successfully");
                         #endregion
                         #region IncompleteIdeas
                         WriteInfoReport("Attempt to submit incomplete ideas");
-                        submitIdea = new imSubmitAnIdea(IMHome.browser);
+                        submitIdea = new swSubmitAnIdea(IMHome.browser);
                         foreach (InputObject badIdea in badIdeas)
                         {
                             IMHome.GotoSubmitAnIdea();
-                            submitIdea = new imSubmitAnIdea(IMHome.browser);
+                            submitIdea = new swSubmitAnIdea(IMHome.browser);
                             submitIdea.IdeaName.Type(badIdea.fields["Title"]);
                             submitIdea.IdeaDescription.Type(badIdea.fields["Description"]);
                             if (!string.IsNullOrEmpty(badIdea.fields["RequiredAnswers"])) submitIdea.FillOutQuestions(badIdea.fields["RequiredAnswers"]);
@@ -234,7 +234,7 @@ namespace IdeaManagement.tests
                         foreach (InputObject declineIdea in declineIdeas)
                         {
                             IMHome.GotoSubmitAnIdea();
-                            submitIdea = new imSubmitAnIdea(IMHome.browser);
+                            submitIdea = new swSubmitAnIdea(IMHome.browser);
                             submitIdea.IdeaName.Type(declineIdea.fields["Title"] + " - " + nameSuffix);
                             submitIdea.IdeaDescription.Type(declineIdea.fields["Description"] + "\r\nSubmitted " + DateTime.Now.ToLongDateString());
                             if (!string.IsNullOrEmpty(declineIdea.fields["RequiredAnswers"])) submitIdea.FillOutQuestions("\r\n" + declineIdea.fields["RequiredAnswers"] + "\r\nBrowser: " + testBrowser.Key);
@@ -257,9 +257,9 @@ namespace IdeaManagement.tests
                         IMHome.browser.ClickButton("Edit");
                         //adding links...
                         submitIdea.AddLinksButton.Click();
-                        imSubmitAnIdea.AddLinksDialog linksDialog = new imSubmitAnIdea.AddLinksDialog(submitIdea.LinksDialog);
+                        swSubmitAnIdea.AddLinksDialog linksDialog = new swSubmitAnIdea.AddLinksDialog(submitIdea.LinksDialog);
                         linksDialog.AddLinkButton.Click();
-                        imSubmitAnIdea.AddLinksDialog.LinkRow linkRow = linksDialog.GetLinkRow(1);
+                        swSubmitAnIdea.AddLinksDialog.LinkRow linkRow = linksDialog.GetLinkRow(1);
                         linkRow.Title.Type(linkslist.First(l => l.fields["Type"].Equals("Link")).fields["Name"]);
                         linkRow.Url.Type(linkslist.First(l => l.fields["Type"].Equals("Link")).fields["URL"]);
                         linksDialog.SaveButton.Click();
@@ -276,12 +276,12 @@ namespace IdeaManagement.tests
                         myIdeas = new imMyIdeas(IMHome.browser);
                         myIdeas.SearchFor(nameSuffix);
 
-                        List<imIdeaListMaster.Refinement> refinements = myIdeas.GetAllRefinements();
+                        List<swIdeaListMaster.Refinement> refinements = myIdeas.GetAllRefinements();
                         HpgAssert.AreEqual(nameSuffix, refinements.First(r => r.Type.ToLower().Equals("search")).Value, "Verify search has been performed");
 
-                        List<imAllIdeas.AllIdea> displayedIdeas = myIdeas.GetAllIdeas();
+                        List<swAllIdeas.AllIdea> displayedIdeas = myIdeas.GetAllIdeas();
                         int[] submittedIdeaIDs = displayedIdeas.Select(i => i.IdeaId).ToArray();
-                        imAllIdeas.AllIdea newIdea = displayedIdeas.First(i => i.Title.Text.EndsWith("Test Idea - " + nameSuffix));
+                        swAllIdeas.AllIdea newIdea = displayedIdeas.First(i => i.Title.Text.EndsWith("Test Idea - " + nameSuffix));
                         int newIdeaNumber = newIdea.IdeaId;
                         IMHome.browser.Dispose();
                         WriteInfoReport("Search for Submitted Idea complete.");
@@ -365,7 +365,7 @@ namespace IdeaManagement.tests
                         IMHome.SelectRole(imHome.Role.Standard);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
-                        imIdeaDetails detailspage = new imIdeaDetails(dashboard.browser);
+                        swIdeaDetails detailspage = new swIdeaDetails(dashboard.browser);
                         detailspage.ShowAdditionalInfoTab();
                         detailspage.RMIResponseText.Type("Response to DCRD from Submitter " + DateTime.Now.ToString("F"));
                         detailspage.AddLinks(linkslist.Where(l => l.fields["Type"].Equals("RMISubmitter")).ToDictionary(l => l.fields["Name"], l => l.fields["URL"]), true);
@@ -414,7 +414,7 @@ namespace IdeaManagement.tests
                         submittedIdeaNumbers = dashboard.GetQueueIdeas(true, " - " + nameSuffix).Where(i => i.IdeaName.Text.EndsWith(" - " + nameSuffix)).Select(i => i.IdeaId).ToArray();
                         WriteReport(submittedIdeaNumbers.Count().ToString() + " ideas found on dashboard");
                         im3PV tPv = new im3PV(dashboard.browser);
-                        imAllIdeas allIdeas = new imAllIdeas(IMHome.browser);
+                        swAllIdeas allIdeas = new swAllIdeas(IMHome.browser);
                         Dictionary<string, im3PV.IdeaValues> ideaValues = new Dictionary<string, im3PV.IdeaValues>();
                         foreach (int ideaID in submittedIdeaNumbers)
                         {
@@ -504,7 +504,7 @@ namespace IdeaManagement.tests
                         IMHome.SelectRole(imHome.Role.Standard);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
-                        detailspage = new imIdeaDetails(dashboard.browser);
+                        detailspage = new swIdeaDetails(dashboard.browser);
                         detailspage.ShowAdditionalInfoTab();
                         detailspage.RMIResponseText.Type("Response to SME from Submitter " + DateTime.Now.ToString("F"));
                         detailspage.AddLinks(linkslist.Where(l => l.fields["Type"].Equals("RMISubmitter2")).ToDictionary(l => l.fields["Name"], l => l.fields["URL"]), true);
@@ -532,7 +532,7 @@ namespace IdeaManagement.tests
                         IMHome.GotoDashboard();
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
-                        detailspage = new imIdeaDetails(dashboard.browser);
+                        detailspage = new swIdeaDetails(dashboard.browser);
                         detailspage.ShowAdditionalInfoTab();
                         detailspage.AddLinks(linkslist.Where(l => l.fields["Type"].Equals("RMIDCRD")).ToDictionary(l => l.fields["Name"], l => l.fields["URL"]), true);
                         detailspage.ShowRMIAddAttachments();
@@ -600,7 +600,7 @@ namespace IdeaManagement.tests
                         //Save 3PV
                         tPv.ClickCommit();
                         IMHome.GotoAllIdeas();
-                        allIdeas = new imAllIdeas(IMHome.browser);
+                        allIdeas = new swAllIdeas(IMHome.browser);
                         allIdeas.SearchFor(newIdeaNumber.ToString());
                         HpgAssert.False(allIdeas.GetAllIdeas().Any(i => i.IdeaId.Equals(newIdeaNumber)), "Verify idea submitted to Admin no longer shows up in All Ideas");
                         WriteInfoReport("Approve idea at SME");
@@ -618,7 +618,7 @@ namespace IdeaManagement.tests
                         System.Threading.Thread.Sleep(5000);
                         dashboard = new Dashboard(IMHome.browser);
                         tPv = new im3PV(dashboard.browser);
-                        allIdeas = new imAllIdeas(IMHome.browser);
+                        allIdeas = new swAllIdeas(IMHome.browser);
                         submittedIdeaNumbers = dashboard.GetQueueIdeas(true, " - " + nameSuffix).Where(i => i.IdeaName.Text.EndsWith(" - " + nameSuffix)).Select(i => i.IdeaId).ToArray();
                         foreach (int ideaID in submittedIdeaNumbers)
                         {
@@ -676,7 +676,7 @@ namespace IdeaManagement.tests
                         IMHome.SelectRole(imHome.Role.Standard);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
-                        detailspage = new imIdeaDetails(dashboard.browser);
+                        detailspage = new swIdeaDetails(dashboard.browser);
                         detailspage.ShowAdditionalInfoTab();
                         detailspage.RMIResponseText.Type("Response to Admin from Submitter " + DateTime.Now.ToString("F"));
                         detailspage.AddLinks(linkslist.Where(l => l.fields["Type"].Equals("RMISubmitter3")).ToDictionary(l => l.fields["Name"], l => l.fields["URL"]), true);
@@ -703,7 +703,7 @@ namespace IdeaManagement.tests
                         IMHome.GotoDashboard();
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
-                        detailspage = new imIdeaDetails(dashboard.browser);
+                        detailspage = new swIdeaDetails(dashboard.browser);
                         detailspage.ShowAdditionalInfoTab();
                         detailspage.RMIResponseText.Type("Response to Admin from DCRD " + DateTime.Now.ToString("F"));
                         detailspage.AddLinks(linkslist.Where(l => l.fields["Type"].Equals("RMIDCRD2")).ToDictionary(l => l.fields["Name"], l => l.fields["URL"]), true);
@@ -798,7 +798,7 @@ namespace IdeaManagement.tests
                         #region SearchAllIdeas
                         WriteInfoReport("Search All Ideas");
                         IMHome.GotoAllIdeas();
-                        allIdeas = new imAllIdeas(IMHome.browser);
+                        allIdeas = new swAllIdeas(IMHome.browser);
                         allIdeas.SearchFor(nameSuffix);
                         System.Threading.Thread.Sleep(2000);
 
@@ -1067,13 +1067,13 @@ namespace IdeaManagement.tests
                             //Now delete newly changed category
                             newCategory.DeleteButton.Click(5);
                             categories.ConfirmDelete.DeleteButton.Click(5);
-                            imMaster.SetCheckBox(categories.ShowDeletedCheckbox, false);
+                            swMaster.SetCheckBox(categories.ShowDeletedCheckbox, false);
                             HpgAssert.False(categories.CategoryList.Any(c => c.Name.Equals(catName)), "Verify category no longer shows up in list (not showing all)");
-                            imMaster.SetCheckBox(categories.ShowDeletedCheckbox, true);
+                            swMaster.SetCheckBox(categories.ShowDeletedCheckbox, true);
                             newCategory = categories.CategoryList.First(c => c.Name.Equals(catName));
                             newCategory.UndoDeleteButton.Click(5);
                             categories.UnDelete.UndoDeleteButton.Click(5);
-                            imMaster.SetCheckBox(categories.ShowDeletedCheckbox, false);
+                            swMaster.SetCheckBox(categories.ShowDeletedCheckbox, false);
                             HpgAssert.True(categories.CategoryList.Any(c => c.Name.Equals(catName)), "Verify category is un-deleted (not showing all)");
                             //TODO: Delete category from DB
                         }
@@ -1108,13 +1108,13 @@ namespace IdeaManagement.tests
                             //Delete newly edited department
                             newDepartment.DeleteButton.Click(3);
                             departments.ConfirmDelete.DeleteButton.Click(3);
-                            imMaster.SetCheckBox(departments.ShowDeletedCheckbox, false);
+                            swMaster.SetCheckBox(departments.ShowDeletedCheckbox, false);
                             HpgAssert.False(departments.DepartmentsList.Any(d => d.Name.Equals(depName)), "Verify newly deleted department no longer shows (not showing deleted)");
                             //Un-Delete newly deleted department
-                            imMaster.SetCheckBox(departments.ShowDeletedCheckbox, true);
+                            swMaster.SetCheckBox(departments.ShowDeletedCheckbox, true);
                             departments.DepartmentsList.First(d => d.Name.Equals(depName)).UnDeleteButton.Click(3);
                             departments.UnDelete.UndoDeleteButton.Click(3);
-                            imMaster.SetCheckBox(departments.ShowDeletedCheckbox, false);
+                            swMaster.SetCheckBox(departments.ShowDeletedCheckbox, false);
                             HpgAssert.True(departments.DepartmentsList.Any(d => d.Name.Equals(depName)), "Verify newly Un-deleted department shows in list (not showing deleted)");
 
                             //TODO: Delete Department from DB
@@ -1162,7 +1162,7 @@ namespace IdeaManagement.tests
                                            "Verify undo-delted Question shows again");
                             //Verify requirement of newly created Question
                             IMHome.GotoSubmitAnIdea();
-                            imSubmitAnIdea submitAnIdea = new imSubmitAnIdea(IMHome.browser);
+                            swSubmitAnIdea submitAnIdea = new swSubmitAnIdea(IMHome.browser);
                             HpgAssert.True(submitAnIdea.GetQuestion(changeQuestion.Name).IsRequired,
                                            "Verify newly created question is required on submit page");
                             //Cleanup
@@ -1312,7 +1312,7 @@ namespace IdeaManagement.tests
                             IMHome.GotoDashboard();
                             IMHome.SelectRole(imHome.Role.SME);
                             IMHome.GotoAllIdeas();
-                            imAllIdeas allIdeas = new imAllIdeas(IMHome.browser);
+                            swAllIdeas allIdeas = new swAllIdeas(IMHome.browser);
                             allIdeas.GetFilter("Streetwise").Check();
                             allIdeas.SearchFor(rejectIdeaId);
                             allIdeas.GetAllIdeas()
@@ -1624,7 +1624,7 @@ namespace IdeaManagement.tests
                 {
                     //Change all ideas to 'Not Yet Reviewed'
                     publishedIdeas.ShowBulkEdit();
-                    imMaster.SetCheckBox(publishedIdeas.BulkEditSelectAllCheckbox, true);
+                    swMaster.SetCheckBox(publishedIdeas.BulkEditSelectAllCheckbox, true);
                     publishedIdeas.BulkEditImplementDropdown.SelectListOptionByText(Enums.ImplementedStatusString.First(s => s.Value.Equals(Enums.ImplementedStatus.NotYetReviewed)).Key);
                     publishedIdeas.BulkEditApplyCuttonClick();
                     HpgAssert.Contains(publishedIdeas.BulkEditSuccessMessage.Text.Trim(), "Successfully updated all Implementated Statuses", "Verify Bulk Edit was successful");

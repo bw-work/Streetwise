@@ -11,9 +11,9 @@ using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class Dashboard : imMaster
+    class Dashboard : swMaster
     {
         public Dashboard(BrowserSession currentBrowser)
             : base(currentBrowser)
@@ -91,6 +91,14 @@ namespace IdeaManagement.page_objects
                 RMIWidget.Element.FindXPath(".//a", new Options() { Match = Match.First }).SendKeys(OpenQA.Selenium.Keys.End);
                 RMIWidget.Element.FindXPath(".//a", new Options() { Match = Match.First }).SendKeys(OpenQA.Selenium.Keys.Home);
                 return (from i in RMIWidget.Element.FindAllXPath(".//div[@ng-repeat='idea in myDraftedIdeas']") select new HpgElement(i)).ToList();
+            }
+        }
+
+        public HpgElement NewsFeedWidget
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("newsFeedWidget"));
             }
         }
 

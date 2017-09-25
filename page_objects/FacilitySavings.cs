@@ -15,9 +15,9 @@ using System.Xml;
 using System.Xml.Linq;
 using Match = Coypu.Match;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class FacilitySavings : imMaster
+    class FacilitySavings : swMaster
     {
         public FacilitySavings(BrowserSession currentBrowser)
             : base(currentBrowser)

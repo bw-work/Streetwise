@@ -7,16 +7,16 @@ using Coypu;
 using AutomationCore;
 using AutomationCore.utility;
 using System.Windows.Forms;
-using IdeaManagement.Utility;
+using Streetwise.Utility;
 using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imSubmitAnIdea : imMaster
+    class swSubmitAnIdea : swMaster
     {
-        public imSubmitAnIdea(BrowserSession currentBrowser)
+        public swSubmitAnIdea(BrowserSession currentBrowser)
             : base(currentBrowser)
         {
         }
@@ -217,7 +217,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//button[contains(.,'Add Links')]"));
+                return new HpgElement(browser.FindCss("#ideaSubmit > div:nth-child(1) > div:nth-child(1) > div.row > div:nth-child(1) > button"));
             }
         }
 
@@ -225,10 +225,41 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//button[contains(.,'Add Attachments')]"));
+                return new HpgElement(browser.FindCss("#ideaSubmit > div:nth-child(1) > div:nth-child(1) > div.row > div:nth-child(2) > button"));
             }
         }
 
+        public HpgElement IdeaQuestionAndResponses1
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("IdeaQuestionAndResponses_1"));
+            }
+        }
+
+        public HpgElement IdeaQuestionAndResponses2
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("IdeaQuestionAndResponses_2"));
+            }
+        }
+
+        public HpgElement IdeaQuestionsAndResponses3
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("IdeaQuestionAndResponses_3"));
+            }
+        }
+
+        public HpgElement IdeaQuestionsAndResponses4
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("IdeaQuestionAndResponses_4"));
+            }
+        }
 
         #endregion
 

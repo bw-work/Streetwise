@@ -11,9 +11,9 @@ using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imIdeaDelete : imMaster
+    class imIdeaDelete : swMaster
     {
         public imIdeaDelete(BrowserSession currentBrowser)
             : base(currentBrowser)

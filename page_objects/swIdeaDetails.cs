@@ -11,11 +11,11 @@ using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imIdeaDetails : imEditIdea
+    class swIdeaDetails : imEditIdea
     {
-        public imIdeaDetails(BrowserSession currentBrowser)
+        public swIdeaDetails(BrowserSession currentBrowser)
             : base(currentBrowser)
         {
         }

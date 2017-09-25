@@ -5,14 +5,14 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Coypu;
 using AutomationCore.utility;
-using IdeaManagement.Utility;
+using Streetwise.Utility;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imMaster
+    class swMaster
     {
         public BrowserSession browser;
-        public imMaster(BrowserSession browser)
+        public swMaster(BrowserSession browser)
         {
             this.browser = browser;
         }
@@ -28,7 +28,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//div[@class='pageHeader' and .//a[@class='logo']]"));
+                return new HpgElement(browser.FindCss("#content > div.pageHeader"));
             }
         }
 
@@ -69,15 +69,15 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindId("PublishedIdea"));
+                return new HpgElement(browser.FindId("QualifiedIdea"));
             }
         }
-
+        
         public HpgElement HeaderLoginLink
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//div[@class='stripe']//a[.='Login']"));
+                return new HpgElement(browser.FindCss("#content > div.stripe > div > div > div > div.span7 > p > a.loginLink"));
             }
         }
 
@@ -85,7 +85,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindId("menu2"));
+                return new HpgElement(browser.FindId("menu3"));
             }
         }
 
@@ -117,7 +117,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//*[@id='content']//div[@class='stripe']/div[@class='container']/div[contains(.,'Welcome ')]"));
+                return new HpgElement(browser.FindCss("#content > div.stripe > div > div > div > div.span7 > p"));
             }
         }
 
@@ -125,7 +125,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//*[@id='content']//div[@class='stripe']/div[@class='container']//a[.='Register']"));
+                return new HpgElement(browser.FindCss("#content > div.stripe > div > div > div > div.span7 > p > a:nth-child(2)"));
             }
         }
 
@@ -133,7 +133,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//div[@class='footer']"));
+                return new HpgElement(browser.FindCss("#content > div.footer"));
             }
         }
         
@@ -185,7 +185,7 @@ namespace IdeaManagement.page_objects
         {
             browser.Visit("/");
             WaitForThrobber();
-            //HpgAssert.Contains(pageHeader.Text, "Streetwise", "Verify Home Page is loaded");
+            HpgAssert.Contains(pageHeader.Text, "Streetwise", "Verify Home Page is loaded");
             AutomationCore.base_tests.BaseTest.WriteReport("Navigated to Home Page");
         }
 

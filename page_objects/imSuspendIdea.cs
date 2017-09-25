@@ -12,9 +12,9 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Data;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imSuspendIdea : imMaster
+    class imSuspendIdea : swMaster
     {
         public imSuspendIdea(BrowserSession currentBrowser)
             : base(currentBrowser)

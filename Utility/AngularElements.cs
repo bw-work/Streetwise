@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Coypu.Drivers;
 using AutomationCore.utility;
 
-namespace IdeaManagement.Utility
+namespace Streetwise.Utility
 {
     class AngularElements
     {

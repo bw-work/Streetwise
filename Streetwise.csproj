@@ -38,6 +38,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="page_objects\MyNewTestsPageObject.cs" />
     <Compile Include="page_objects\Categories.cs" />
     <Compile Include="page_objects\ConfigMaster.cs" />
     <Compile Include="page_objects\Dashboard.cs" />
@@ -46,11 +47,11 @@
     <Compile Include="page_objects\EditQuestions.cs" />
     <Compile Include="page_objects\EditResultTypes.cs" />
     <Compile Include="page_objects\FacilitySavings.cs" />
-    <Compile Include="page_objects\imAllIdeas.cs" />
+    <Compile Include="page_objects\swAllIdeas.cs" />
     <Compile Include="page_objects\imDepartments.cs" />
     <Compile Include="page_objects\imEditDepartment.cs" />
     <Compile Include="page_objects\imHomePageCMS.cs" />
-    <Compile Include="page_objects\imIdeaListMaster.cs" />
+    <Compile Include="page_objects\swIdeaListMaster.cs" />
     <Compile Include="page_objects\imNewStreetwiseIdeas.cs" />
     <Compile Include="page_objects\imPublishedIdea.cs" />
     <Compile Include="page_objects\imPublishedIdeaEmail.cs" />
@@ -64,16 +65,16 @@
     <Compile Include="page_objects\imHome.cs" />
     <Compile Include="page_objects\imIdeaAccept.cs" />
     <Compile Include="page_objects\imIdeaDelete.cs" />
-    <Compile Include="page_objects\imIdeaDetails.cs" />
+    <Compile Include="page_objects\swIdeaDetails.cs" />
     <Compile Include="page_objects\imIdeaDetailsAdmin.cs" />
     <Compile Include="page_objects\imIdeaReject.cs" />
     <Compile Include="page_objects\imLogin.cs" />
-    <Compile Include="page_objects\imMaster.cs" />
+    <Compile Include="page_objects\swMaster.cs" />
     <Compile Include="page_objects\imMyIdeas.cs" />
     <Compile Include="page_objects\imPublishedIdeas.cs" />
     <Compile Include="page_objects\im3PV.cs" />
     <Compile Include="page_objects\imReassign.cs" />
-    <Compile Include="page_objects\imSubmitAnIdea.cs" />
+    <Compile Include="page_objects\swSubmitAnIdea.cs" />
     <Compile Include="page_objects\imSuspendIdea.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tests\Test_IM.cs" />

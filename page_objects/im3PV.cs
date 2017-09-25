@@ -7,15 +7,15 @@ using Coypu;
 using AutomationCore;
 using AutomationCore.utility;
 using HtmlAgilityPack;
-using IdeaManagement.Utility;
+using Streetwise.Utility;
 using System.Windows.Forms;
 using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class im3PV : imMaster
+    class im3PV : swMaster
     {
         public im3PV(BrowserSession currentBrowser)
             : base(currentBrowser)

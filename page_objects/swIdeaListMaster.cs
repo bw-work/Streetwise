@@ -15,11 +15,11 @@ using System.Xml;
 using System.Xml.Linq;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imIdeaListMaster : imMaster
+    class swIdeaListMaster : swMaster
     {
-        public imIdeaListMaster(BrowserSession currentBrowser)
+        public swIdeaListMaster(BrowserSession currentBrowser)
             : base(currentBrowser)
         {
         }
@@ -128,7 +128,7 @@ namespace IdeaManagement.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//select[@ng-init='setupSort()']"));
+                return new HpgElement(browser.FindCss("#IdeaCardRowHeadingsDiv > div.resultHeaderBackground > div > div.span5 > div > select"));
             }
         }
 

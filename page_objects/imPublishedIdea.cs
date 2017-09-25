@@ -12,9 +12,9 @@ using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imPublishedIdea : imMaster
+    class imPublishedIdea : swMaster
     {
         public imPublishedIdea(BrowserSession currentBrowser)
             : base(currentBrowser)

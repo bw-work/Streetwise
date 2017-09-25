@@ -13,9 +13,9 @@ using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imNewStreetwiseIdeas : imMaster
+    class imNewStreetwiseIdeas : swMaster
     {
         public imNewStreetwiseIdeas(BrowserSession currentBrowser)
             : base(currentBrowser)

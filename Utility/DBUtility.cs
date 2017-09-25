@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using AutomationCore.utility;
 
-namespace IdeaManagement.Utility
+namespace Streetwise.Utility
 {
     class DBUtility : AutomationCore.utility.DBAccess
     {

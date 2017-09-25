@@ -14,7 +14,7 @@ using System.Data;
 
 
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
     class imPublishedIdeaEmail : imPublishedIdea
     {

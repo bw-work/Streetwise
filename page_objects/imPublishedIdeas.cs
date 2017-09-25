@@ -12,12 +12,12 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Data;
 using HtmlAgilityPack;
-using IdeaManagement.Utility;
+using Streetwise.Utility;
 
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imPublishedIdeas : imMaster
+    class imPublishedIdeas : swMaster
     {
         public imPublishedIdeas(BrowserSession currentBrowser)
             : base(currentBrowser)

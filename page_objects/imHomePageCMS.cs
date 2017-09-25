@@ -10,9 +10,9 @@ using AutomationCore.utility;
 using System.Windows.Forms;
 using OpenQA.Selenium.IE;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imHomePageCMS : imMaster
+    class imHomePageCMS : swMaster
     {
         public imHomePageCMS(BrowserSession currentBrowser)
             : base(currentBrowser)

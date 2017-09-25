@@ -9,9 +9,9 @@ using AutomationCore.utility;
 using System.Windows.Forms;
 using OpenQA.Selenium.IE;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imLogin : imMaster
+    class imLogin : swMaster
     {
         public imLogin(BrowserSession currentBrowser)
             : base(currentBrowser)

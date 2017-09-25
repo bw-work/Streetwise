@@ -13,12 +13,11 @@ using OpenQA.Selenium.IE;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace IdeaManagement.page_objects
+namespace Streetwise.page_objects
 {
-    class imAllIdeas : imIdeaListMaster
+    class swAllIdeas : swIdeaListMaster
     {
-        public imAllIdeas(BrowserSession currentBrowser)
-            : base(currentBrowser)
+        public swAllIdeas(BrowserSession currentBrowser) : base(currentBrowser)
         {
         }
 
