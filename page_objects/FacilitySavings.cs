@@ -205,7 +205,7 @@ namespace Streetwise.page_objects
             {
                 get
                 {
-                    return new HpgElement(element.FindXPath(".//div[@ng-show='ytd']//h3"));
+                    return new HpgElement(element.FindCss("#ng-app > div > div > form > div:nth-child(1) > div.span6.ng-hide > div > h3"));
                 }
             }
 

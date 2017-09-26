@@ -16,7 +16,7 @@ using System.Data;
 
 namespace Streetwise.page_objects
 {
-    class imPublishedIdeaEmail : imPublishedIdea
+    class imPublishedIdeaEmail : swPublishedIdeaDetails
     {
         public imPublishedIdeaEmail(BrowserSession currentBrowser)
             : base(currentBrowser)

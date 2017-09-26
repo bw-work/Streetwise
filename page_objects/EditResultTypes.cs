@@ -65,7 +65,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//input[@ng-model='filterDeleted']"));
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div > div > label > input"));
             }
         }
 
@@ -137,7 +137,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//select[@ng-model='createData.ReportingPeriod']"));
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(5) > label > select"));
             }
         }
 
@@ -186,7 +186,7 @@ namespace Streetwise.page_objects
             public HpgElement form;
             public EditForm(BrowserSession browser)
             {
-                form = new HpgElement(browser.FindXPath("//form[@name='editForm']"));
+                form = new HpgElement(browser.FindCss("#editDialog > form"));
             }
 
             public HpgElement Name
@@ -262,7 +262,7 @@ namespace Streetwise.page_objects
             {
                 get
                 {
-                    return new HpgElement(form.Element.FindXPath(".//select[@ng-model='editData.ReportingPeriod']"));
+                    return new HpgElement(form.Element.FindCss("#editDialog > form > div.modal-body > div:nth-child(4) > label > select"));
                 }
             }
 

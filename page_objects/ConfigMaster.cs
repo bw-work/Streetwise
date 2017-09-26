@@ -72,7 +72,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//input[@ng-model='filterDeleted']"));
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div > div > label > input"));
             }
         }
         
@@ -95,6 +95,5 @@ namespace Streetwise.page_objects
                 };
             }
         }
-
     }
 }

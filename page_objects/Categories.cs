@@ -15,8 +15,7 @@ namespace Streetwise.page_objects
 {
     class Categories : ConfigMaster
     {
-        public Categories(BrowserSession currentBrowser)
-            : base(currentBrowser)
+        public Categories(BrowserSession currentBrowser) : base(currentBrowser)
         {
         }
 
@@ -71,10 +70,10 @@ namespace Streetwise.page_objects
             {
                 return new CreateCategory()
                     {
-                        Name = new HpgElement(browser.FindXPath("//input[@name='categoryName']")),
-                        HCAOpportunity = new HpgElement(browser.FindXPath("//select[@ng-model='createData.HCAOpportunityId']")),
-                        GPOOpportunity = new HpgElement(browser.FindXPath("//select[@ng-model='createData.GPOOpportunityId']")),
-                        NonGPOOpportunity = new HpgElement(browser.FindXPath("//select[@ng-model='createData.NonGPOOpportunityId']")),
+                        Name = new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(3) > div > input")),
+                        HCAOpportunity = new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(4) > div > select")),
+                        GPOOpportunity = new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(5) > div > select")),
+                        NonGPOOpportunity = new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(6) > div > select")),
                         CreateButton = new HpgElement(browser.FindButton("Create"))
                     };
             }
@@ -86,10 +85,10 @@ namespace Streetwise.page_objects
             {
                 return new EditCat()
                     {
-                        Name = new HpgElement(EditDialog.Element.FindXPath(".//input[@name='categoryName']")),
-                        HCAOpportunity = new HpgElement(EditDialog.Element.FindXPath(".//select[@ng-model='editData.HCAOpportunityId']")),
-                        GPOOpportunity = new HpgElement(EditDialog.Element.FindXPath(".//select[@ng-model='editData.GPOOpportunityId']")),
-                        NonGPOOpportunity = new HpgElement(EditDialog.Element.FindXPath(".//select[@ng-model='editData.NonGPOOpportunityId']")),
+                        Name = new HpgElement(EditDialog.Element.FindCss("#editDialog > form > div.modal-body > div:nth-child(3) > div > input.span3.ng-pristine.ng-valid-maxlength.ng-valid.ng-valid-required")),
+                        HCAOpportunity = new HpgElement(EditDialog.Element.FindCss("#editDialog > form > div.modal-body > div:nth-child(4) > div > select")),
+                        GPOOpportunity = new HpgElement(EditDialog.Element.FindCss("#editDialog > form > div.modal-body > div:nth-child(5) > div > select")),
+                        NonGPOOpportunity = new HpgElement(EditDialog.Element.FindCss("#editDialog > form > div.modal-body > div:nth-child(6) > div > select")),
                         SaveButton = new HpgElement(EditDialog.Element.FindButton("Save")),
                         CancelButton = new HpgElement(EditDialog.Element.FindButton("Cancel"))
                     };

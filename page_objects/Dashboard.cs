@@ -133,9 +133,9 @@ namespace Streetwise.page_objects
         public QueueIdea ParseIdea(HpgElement idea)
         {
             QueueIdea addIdea = new QueueIdea();
-            addIdea.IdeaName = new HpgElement(idea.Element.FindXPath(".//div[@class='widgetDetail']/p[1]/a"));
+            addIdea.IdeaName = new HpgElement(idea.Element.FindCss("#newsFeedWidget > div > div.scrollbar-outer.ng-isolate-scope.scroll-content > div.widgetBodyContent.ng-scope > div > div.span11 > div > p.marginTop2 > a"));
             addIdea.IdeaId = int.Parse(addIdea.IdeaName.Text.Split('-').First().Trim());
-            addIdea.SubmittedBy = idea.Element.FindXPath(".//div[@class='widgetDetail']/p[2]").Text.Replace("Submitted By:", "").Trim();
+            addIdea.SubmittedBy = idea.Element.FindCss("#newsFeedWidget > div > div.scrollbar-outer.ng-isolate-scope.scroll-content > div.widgetBodyContent.ng-scope > div > div.span11 > div > p.ng-binding").Text.Replace("Submitted By:", "").Trim();
             string ud = string.Join(" ", (from d in idea.Element.FindAllXPath(".//div[@class='widgetDate']/span") select d.Text.Trim()));
             addIdea.UpdatedDate = DateTime.Parse(ud);
             return addIdea;

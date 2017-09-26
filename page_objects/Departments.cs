@@ -51,7 +51,7 @@ namespace Streetwise.page_objects
             {
                 return new EditDep()
                     {
-                        Name = new HpgElement(EditDialog.Element.FindXPath(".//input[@name='deptName']")),
+                        Name = new HpgElement(EditDialog.Element.FindCss("#editDialog > form > div.modal-body > div:nth-child(3) > div > input.span3.ng-pristine.ng-valid-maxlength.ng-valid.ng-valid-required")),
                         SaveButton = new HpgElement(EditDialog.Element.FindButton("Save")),
                         CancelButton = new HpgElement(EditDialog.Element.FindButton("Canel"))
                     };
@@ -60,7 +60,7 @@ namespace Streetwise.page_objects
 
         public HpgElement CreateForm
         {
-            get { return new HpgElement(browser.FindXPath("//form[@name='createForm']")); }
+            get { return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form")); }
         }
 
         public Create CreateDepartment
@@ -70,7 +70,7 @@ namespace Streetwise.page_objects
                 return new Create()
                     {
                         CreateButton = new HpgElement(CreateForm.Element.FindButton("Create")),
-                        Name = new HpgElement(CreateForm.Element.FindXPath(".//input[@name='deptName']"))
+                        Name = new HpgElement(CreateForm.Element.FindXPath("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(3) > div > input"))
                     };
             }
         }

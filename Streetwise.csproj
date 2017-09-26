@@ -53,7 +53,7 @@
     <Compile Include="page_objects\imHomePageCMS.cs" />
     <Compile Include="page_objects\swIdeaListMaster.cs" />
     <Compile Include="page_objects\imNewStreetwiseIdeas.cs" />
-    <Compile Include="page_objects\imPublishedIdea.cs" />
+    <Compile Include="page_objects\swPublishedIdeaDetails.cs" />
     <Compile Include="page_objects\imPublishedIdeaEmail.cs" />
     <Compile Include="page_objects\imPublishedIdeaPrint.cs" />
     <Compile Include="tests\MyNewTests.cs" />
@@ -70,8 +70,8 @@
     <Compile Include="page_objects\imIdeaReject.cs" />
     <Compile Include="page_objects\imLogin.cs" />
     <Compile Include="page_objects\swMaster.cs" />
-    <Compile Include="page_objects\imMyIdeas.cs" />
-    <Compile Include="page_objects\imPublishedIdeas.cs" />
+    <Compile Include="page_objects\swMyIdeas.cs" />
+    <Compile Include="page_objects\swPublishedIdeas.cs" />
     <Compile Include="page_objects\im3PV.cs" />
     <Compile Include="page_objects\imReassign.cs" />
     <Compile Include="page_objects\swSubmitAnIdea.cs" />

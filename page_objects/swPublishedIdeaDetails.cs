@@ -14,9 +14,9 @@ using System.Xml.Linq;
 
 namespace Streetwise.page_objects
 {
-    class imPublishedIdea : swMaster
+    class swPublishedIdeaDetails : swMaster
     {
-        public imPublishedIdea(BrowserSession currentBrowser)
+        public swPublishedIdeaDetails(BrowserSession currentBrowser)
             : base(currentBrowser)
         {
         }
@@ -124,7 +124,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//a[img[@alt='Download PDF']]"));
+                return new HpgElement(browser.FindCss("#ideaDetails > div:nth-child(1) > div.span3 > div.row > div > div > ul > li:nth-child(1) > a"));
             }
         }
 
@@ -132,7 +132,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//a[img[@alt='Download Excel']]"));
+                return new HpgElement(browser.FindCss("#ideaDetails > div:nth-child(1) > div.span3 > div.row > div > div > ul > li:nth-child(2) > a"));
             }
         }
 

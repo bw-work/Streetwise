@@ -44,7 +44,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//form[@name='createForm']//textarea[@name='question']"));
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(3) > div.span3 > div > div > form > div:nth-child(3) > div > textarea"));
             }
         }
 
@@ -52,7 +52,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//form[@name='createForm']").FindId("isRequired"));
+                return new HpgElement(browser.FindId("isRequired"));
             }
         }
 
@@ -60,7 +60,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//form[@name='createForm']").FindButton("Create"));
+                return new HpgElement(browser.FindButton("Create"));
             }
         }
 
@@ -68,7 +68,7 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//input[@ng-model='filterDeleted']"));
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div > div > label > input"));
             }
         }
 
@@ -109,7 +109,7 @@ namespace Streetwise.page_objects
             public HpgElement form;
             public EditForm(BrowserSession browser)
             {
-                form = new HpgElement(browser.FindXPath("//form[@name='editForm']"));
+                form = new HpgElement(browser.FindCss("#editDialog > form"));
             }
 
             public HpgElement Question

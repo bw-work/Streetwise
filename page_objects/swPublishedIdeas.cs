@@ -17,14 +17,12 @@ using Streetwise.Utility;
 
 namespace Streetwise.page_objects
 {
-    class imPublishedIdeas : swMaster
+    class swPublishedIdeas : swMaster
     {
-        public imPublishedIdeas(BrowserSession currentBrowser)
+        public swPublishedIdeas(BrowserSession currentBrowser)
             : base(currentBrowser)
         {
         }
-
-        
 
         public class PublishedIdea
         {

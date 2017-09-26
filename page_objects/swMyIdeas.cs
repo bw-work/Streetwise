@@ -15,9 +15,9 @@ using System.Xml.Linq;
 
 namespace Streetwise.page_objects
 {
-    class imMyIdeas : swIdeaListMaster
+    class swMyIdeas : swIdeaListMaster
     {
-        public imMyIdeas(BrowserSession currentBrowser) : base(currentBrowser)
+        public swMyIdeas(BrowserSession currentBrowser) : base(currentBrowser)
         {
         }
 

@@ -72,7 +72,7 @@ namespace Streetwise.tests
                     IMHome.SelectRole(imHome.Role.ReadOnly);
                     System.Threading.Thread.Sleep(5000);
                     IMHome.GotoPublishedIdeas();
-                    imPublishedIdeas publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                    swPublishedIdeas publishedIdeas = new swPublishedIdeas(IMHome.browser);
                     publishedIdeas.WaitForThrobber();
                     var publishedList = publishedIdeas.GetPublishedIdeas();
                     var randomIdea = publishedList.ElementAt(rnd.Next(publishedList.Count - 1));
@@ -83,7 +83,7 @@ namespace Streetwise.tests
                     randomIdea.IdeaName.Element.SendKeys(OpenQA.Selenium.Keys.ArrowUp);
                     randomIdea.IdeaName.Element.SendKeys(OpenQA.Selenium.Keys.ArrowUp);
                     randomIdea.IdeaName.Click(10);
-                    page_objects.imPublishedIdea publishedIdea = new imPublishedIdea(publishedIdeas.browser);
+                    page_objects.swPublishedIdeaDetails publishedIdea = new swPublishedIdeaDetails(publishedIdeas.browser);
                     publishedIdea.LinkExcel.Element.Now();
 
                     #region VerifyExcel
@@ -143,7 +143,7 @@ namespace Streetwise.tests
                         ews.FilterGreaterThan.Clear();
                         ews.FilterGreaterThan.Add(new KeyValuePair<string, object>("sent", DateTime.Now));
                         ews.UserDomain = "HCA";
-                        page_objects.imPublishedIdeas publishedIdeas;
+                        page_objects.swPublishedIdeas publishedIdeas;
                         WriteInfoReport("Setup complete.");
                         #endregion
 
@@ -158,7 +158,7 @@ namespace Streetwise.tests
                             IMHome.SelectRole(imHome.Role.ReadOnly);
                             System.Threading.Thread.Sleep(3000);
                             IMHome.GotoPublishedIdeas();
-                            publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                            publishedIdeas = new swPublishedIdeas(IMHome.browser);
                             publishedIdeas.WaitForThrobber();
                             int[] uids = publishedIdeas.GetPublishedIdeasIds();
                             foreach (int i in uids)
@@ -250,7 +250,7 @@ namespace Streetwise.tests
                         //Dashboard dashboard = new Dashboard(IMHome.browser);
                         //dashboard.GetSavedIdeas().First(i => i.IdeaName.Text.EndsWith("Test Idea - " + nameSuffix)).Click();
                         IMHome.GotoMyIdeas();
-                        imMyIdeas myIdeas = new imMyIdeas(IMHome.browser);
+                        swMyIdeas myIdeas = new swMyIdeas(IMHome.browser);
                         myIdeas.SearchFor(nameSuffix);
                         myIdeas.GetAllIdeas().First(i => i.Title.Text.EndsWith("Test Idea - " + nameSuffix)).Title.Click(20);
                         //((HpgElement)IMHome.browser.FindButton("Edit")).Click(5);
@@ -273,7 +273,7 @@ namespace Streetwise.tests
                         //Search for submitted idea in MyIdeas
                         WriteInfoReport("Search for Submitted Idea");
                         IMHome.GotoMyIdeas();
-                        myIdeas = new imMyIdeas(IMHome.browser);
+                        myIdeas = new swMyIdeas(IMHome.browser);
                         myIdeas.SearchFor(nameSuffix);
 
                         List<swIdeaListMaster.Refinement> refinements = myIdeas.GetAllRefinements();
@@ -815,8 +815,8 @@ namespace Streetwise.tests
 
                         #region SearchPublishedIdeas
                         WriteInfoReport("Search Published Ideas");
-                        publishedIdeas = new imPublishedIdeas(IMHome.browser);
-                        List<imPublishedIdeas.PublishedIdea> publishedIdeaList = new List<imPublishedIdeas.PublishedIdea>();
+                        publishedIdeas = new swPublishedIdeas(IMHome.browser);
+                        List<swPublishedIdeas.PublishedIdea> publishedIdeaList = new List<swPublishedIdeas.PublishedIdea>();
                         #region TryOutOfSoCUsers
                         foreach (InputObject user in readOnlyUsers.Where(u => !u.fields["UserID"].Equals(randomReadOnlyUser.fields["UserID"])))
                         {
@@ -827,7 +827,7 @@ namespace Streetwise.tests
                             IMHome.SelectRole(imHome.Role.ReadOnly);
                             System.Threading.Thread.Sleep(3000);
                             IMHome.GotoPublishedIdeas();
-                            publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                            publishedIdeas = new swPublishedIdeas(IMHome.browser);
                             publishedIdeas.WaitForThrobber();
                             publishedIdeas.SearchFor(nameSuffix);
                             publishedIdeaList = publishedIdeas.GetPublishedIdeas();
@@ -843,7 +843,7 @@ namespace Streetwise.tests
                         IMHome.SelectRole(imHome.Role.ReadOnly);
                         System.Threading.Thread.Sleep(5000);
                         IMHome.GotoPublishedIdeas();
-                        publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                        publishedIdeas = new swPublishedIdeas(IMHome.browser);
                         publishedIdeas.WaitForThrobber();
                         publishedIdeas.SearchFor(nameSuffix);
                         publishedIdeaList = publishedIdeas.GetPublishedIdeas();
@@ -858,7 +858,7 @@ namespace Streetwise.tests
                         }
                         #endregion
 
-                        imPublishedIdeas.PublishedIdea newPublishedIdea = publishedIdeaList.First(i => i.IdeaNumber.Equals(newIdeaNumber));
+                        swPublishedIdeas.PublishedIdea newPublishedIdea = publishedIdeaList.First(i => i.IdeaNumber.Equals(newIdeaNumber));
                         HpgAssert.Contains(newPublishedIdea.IdeaName.Text, nameSuffix, "Verify new idea is listed in Published Ideas list.");
                         WriteInfoReport("Search Published Ideas complete.");
                         #endregion
@@ -880,7 +880,7 @@ namespace Streetwise.tests
                         WriteInfoReport("Validate Published Idea Details");
                         newPublishedIdea.IdeaName.Click();
 
-                        page_objects.imPublishedIdea publishedIdea = new imPublishedIdea(publishedIdeas.browser);
+                        page_objects.swPublishedIdeaDetails publishedIdea = new swPublishedIdeaDetails(publishedIdeas.browser);
                         HpgAssert.Contains(publishedIdea.IdeaTitle.Text, nameSuffix, "Verify published idea title");
                         HpgAssert.AreEqual(newIdeaNumber.ToString(), publishedIdea.IdeaNumber.Text.Trim(), "Verify published idea number");
                         List<HpgElement> attachments = publishedIdea.GetAllAttachments();
@@ -1454,9 +1454,9 @@ namespace Streetwise.tests
                             //IMHome.loginIdeaManagement(BaseURL, TestUserDomain + "\\" + CentennialUser); //Login as HCA user
                             IMHome.SelectRole(imHome.Role.ReadOnly);
                             IMHome.GotoPublishedIdeas();
-                            page_objects.imPublishedIdeas publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                            page_objects.swPublishedIdeas publishedIdeas = new swPublishedIdeas(IMHome.browser);
                             publishedIdeas.SearchFor(rejectIdeaId);
-                            imPublishedIdeas.PublishedIdea newPublishedIdea =
+                            swPublishedIdeas.PublishedIdea newPublishedIdea =
                                 publishedIdeas.GetPublishedIdeas()
                                               .First(i => i.IdeaNumber.ToString().Equals(rejectIdeaId));
                             HpgAssert.True(newPublishedIdea.IdeaName.Element.Exists(),
@@ -1464,7 +1464,7 @@ namespace Streetwise.tests
                             WriteInfoReport("Search Published Ideas complete.");
                             WriteInfoReport("Validate Published Idea Details");
                             newPublishedIdea.IdeaName.Click();
-                            page_objects.imPublishedIdea publishedIdea = new imPublishedIdea(publishedIdeas.browser);
+                            page_objects.swPublishedIdeaDetails publishedIdea = new swPublishedIdeaDetails(publishedIdeas.browser);
                             HpgAssert.AreEqual(rejectIdeaId, publishedIdea.IdeaNumber.Text.Trim(),
                                                "Verify published idea Number");
                             HpgAssert.AreEqual(importTitle.ToLower(), publishedIdea.IdeaTitle.Text.Trim().ToLower(),
@@ -1535,12 +1535,12 @@ namespace Streetwise.tests
                             IMHome.GotoDashboard();
                             IMHome.SelectRole(imHome.Role.ReadOnly);
                             IMHome.GotoPublishedIdeas();
-                            publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                            publishedIdeas = new swPublishedIdeas(IMHome.browser);
                             publishedIdeas.SearchFor(rejectIdeaId);
                             publishedIdeas.GetPublishedIdeas()
                                           .First(i => i.IdeaNumber.ToString().Equals(rejectIdeaId))
                                           .IdeaName.Click(); //go to the published idea
-                            publishedIdea = new imPublishedIdea(IMHome.browser);
+                            publishedIdea = new swPublishedIdeaDetails(IMHome.browser);
                             HpgAssert.AreEqual(rejectIdeaId, publishedIdea.IdeaNumber.Text.Trim(),
                                                "Verify published idea Number");
                             HpgAssert.AreEqual(nameSuffix + importTitle.ToLower(),
@@ -1610,9 +1610,9 @@ namespace Streetwise.tests
                 #endregion
 
                 IMHome.GotoPublishedIdeas();
-                imPublishedIdeas publishedIdeas = new imPublishedIdeas(IMHome.browser);
-                List<imPublishedIdeas.CFApPublishedIdea> pageIdeas = new List<imPublishedIdeas.CFApPublishedIdea>();
-                imPublishedIdeas.CFApPublishedIdea updateIdea = new imPublishedIdeas.CFApPublishedIdea();
+                swPublishedIdeas publishedIdeas = new swPublishedIdeas(IMHome.browser);
+                List<swPublishedIdeas.CFApPublishedIdea> pageIdeas = new List<swPublishedIdeas.CFApPublishedIdea>();
+                swPublishedIdeas.CFApPublishedIdea updateIdea = new swPublishedIdeas.CFApPublishedIdea();
                 DataTable savingsTable = new DataTable("SavingsTable");
                 savingsTable.Columns.Add(new DataColumn("IdeaId", typeof (int)));
                 savingsTable.Columns.Add(new DataColumn("Year", typeof(int)));
@@ -1685,7 +1685,7 @@ namespace Streetwise.tests
                 if (false)
                 {
                     updateIdea.IdeaName.Click();
-                    imPublishedIdea publishedIdea = new imPublishedIdea(publishedIdeas.browser);
+                    swPublishedIdeaDetails publishedIdea = new swPublishedIdeaDetails(publishedIdeas.browser);
                     publishedIdea.ImplementationStatusDropDown.SelectListOptionByText(Enums.ImplementedStatusString.First(s => s.Value.Equals(Enums.ImplementedStatus.NotYetReviewed)).Key);
                     publishedIdea.Refresh();
                     HpgAssert.AreEqual(publishedIdea.ImplementationStatusDropDown.Element.SelectedOption, Enums.ImplementedStatusString.First(s => s.Value.Equals(Enums.ImplementedStatus.NotYetReviewed)).Key, "Verify selected status is 'Not Yet Reviewed");
@@ -1724,7 +1724,7 @@ namespace Streetwise.tests
                 #region FacilitySavings
                 #region BulkImplementRandom9Ideas
                 IMHome.GotoPublishedIdeas();
-                publishedIdeas = new imPublishedIdeas(IMHome.browser);
+                publishedIdeas = new swPublishedIdeas(IMHome.browser);
                 //Randomly select 9 to implement
                 HpgAssert.True(publishedIdeas.FilterRecordCountInt > 8, "Verify there are at least 9 ideas to test");
                 System.Threading.Thread.Sleep(5000);

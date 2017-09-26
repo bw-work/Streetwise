@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace Streetwise.page_objects
 {
-    class imPublishedIdeaPrint : imPublishedIdea
+    class imPublishedIdeaPrint : swPublishedIdeaDetails
     {
         public imPublishedIdeaPrint(BrowserWindow currentBrowser) : base((BrowserSession)currentBrowser)
         {
