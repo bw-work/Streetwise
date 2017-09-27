@@ -8,8 +8,8 @@
     <ProjectGuid>{0BB07FBD-A96B-47C9-ACD4-6F8DF41A0C04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IdeaManagement</RootNamespace>
-    <AssemblyName>IdeaManagement</AssemblyName>
+    <RootNamespace>Streetwise</RootNamespace>
+    <AssemblyName>Streetwise</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -38,7 +38,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="page_objects\MyNewTestsPageObject.cs" />
+    <Compile Include="page_objects\ExecuteAutomationLogin.cs" />
     <Compile Include="page_objects\Categories.cs" />
     <Compile Include="page_objects\ConfigMaster.cs" />
     <Compile Include="page_objects\Dashboard.cs" />
@@ -56,19 +56,21 @@
     <Compile Include="page_objects\swPublishedIdeaDetails.cs" />
     <Compile Include="page_objects\imPublishedIdeaEmail.cs" />
     <Compile Include="page_objects\imPublishedIdeaPrint.cs" />
+    <Compile Include="tests\CommonMethods.cs" />
     <Compile Include="tests\MyNewTests.cs" />
+    <Compile Include="tests\StreetwiseRegression.cs" />
     <Compile Include="Utility\AngularElements.cs" />
     <Compile Include="Utility\DBUtility.cs" />
     <Compile Include="page_objects\imCategories.cs" />
     <Compile Include="page_objects\imEditCategory.cs" />
     <Compile Include="page_objects\imEditIdea.cs" />
-    <Compile Include="page_objects\imHome.cs" />
+    <Compile Include="page_objects\swHome.cs" />
     <Compile Include="page_objects\imIdeaAccept.cs" />
     <Compile Include="page_objects\imIdeaDelete.cs" />
     <Compile Include="page_objects\swIdeaDetails.cs" />
     <Compile Include="page_objects\imIdeaDetailsAdmin.cs" />
     <Compile Include="page_objects\imIdeaReject.cs" />
-    <Compile Include="page_objects\imLogin.cs" />
+    <Compile Include="page_objects\swLogin.cs" />
     <Compile Include="page_objects\swMaster.cs" />
     <Compile Include="page_objects\swMyIdeas.cs" />
     <Compile Include="page_objects\swPublishedIdeas.cs" />
@@ -102,6 +104,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Input_Files\test_specific\IdeaCreationJourney.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Input_Files\test_specific\StreetwiseRegression.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Input_Files\test_specific\MyNewTests.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Input_Files\test_specific\Test_TC7053.xls">
@@ -229,6 +237,10 @@
       <HintPath>packages\AutomationCore.1.0.0.72\lib\net40\Microsoft.Exchange.WebServices.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -292,6 +304,36 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -14,11 +14,11 @@ using OpenQA.Selenium.Chrome;
 
 namespace Streetwise.page_objects
 {
-    public class MyNewTestsPageObject 
+    public class ExecuteAutomationLogin 
     {
         BrowserSession browser;
 
-        public MyNewTestsPageObject(BrowserSession currentBrowser)
+        public ExecuteAutomationLogin(BrowserSession currentBrowser)
         {
             this.browser = currentBrowser;
         }

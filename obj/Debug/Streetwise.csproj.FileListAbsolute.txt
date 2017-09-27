@@ -21,10 +21,12 @@ C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Inpu
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Input_Files\global\Main.xls
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Input_Files\global\Attachments\Good\POLAExport.xls
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Input_Files\test_specific\IdeaCreationJourney.xls
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Input_Files\test_specific\StreetwiseRegression.xls
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Input_Files\test_specific\MyNewTests.xls
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Input_Files\test_specific\Test_TC7053.xls
-C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\IdeaManagement.dll.config
-C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\IdeaManagement.dll
-C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\IdeaManagement.pdb
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Streetwise.dll.config
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Streetwise.dll
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Streetwise.pdb
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Antlr3.Runtime.dll
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\AutomationCore.dll
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\BCMakeCert.dll
@@ -66,6 +68,7 @@ C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Syst
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\WebDriver.xml
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\WebDriver.Support.xml
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.csprojResolveAssemblyReference.cache
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.csproj.ResolveComReference.cache
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.csproj.CoreCompileInputs.cache
-C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\IdeaManagement.dll
-C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\IdeaManagement.pdb
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.dll
+C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.pdb

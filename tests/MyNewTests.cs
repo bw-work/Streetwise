@@ -4,59 +4,57 @@ using Coypu;
 using Streetwise.page_objects;
 using System;
 using OpenQA.Selenium;
+using AutomationCore.utility;
+using AutomationCore.input_objects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Streetwise.tests
 {
     [TestFixture]
-    public class MyNewTests : SuperTest
+    public class MyNewTests : CommonMethods
     {
-        [TestCase(@"executeautomation.com/demosite/Login.html")]
-        public void ThisIsMyNewTest(string BaseURL)
-        {
-            SessConfiguration.AppHost = BaseURL;
-            Browser = new BrowserSession(SessConfiguration);
-            Browser.MaximiseWindow();
-            Browser.Visit("");
-            MyNewTestsPageObject myNewTestsPageObject = new MyNewTestsPageObject(Browser);
+        string BaseURL = @"executeautomation.com/demosite/Login.html";
+        string DataFile = @"test_specific\MyNewTests.xls";
 
-            AssertPageElements(myNewTestsPageObject);
-            Login(myNewTestsPageObject);
+        [Test]
+        public void ThisIsMyNewTest()
+        {
+            ExecuteAutomationLogin executeAutomationLogin = new ExecuteAutomationLogin(Browser);
+
+            AssertPageElements(executeAutomationLogin);
+            Login(executeAutomationLogin);
         }
 
-        public void AssertPageElements(MyNewTestsPageObject myNewTestsPageObject)
+        public void AssertPageElements(ExecuteAutomationLogin executeAutomationLogin)
         {
-            Assert.AreEqual(myNewTestsPageObject.LoginLink.Text, "LOGIN");
-            Assert.AreEqual(myNewTestsPageObject.PageTitle.Text, "Execute Automation Selenium Test Site");
-            Assert.AreEqual(myNewTestsPageObject.LoginTitle.Text, "Login");
-            Assert.AreEqual(myNewTestsPageObject.UserNameLbl.Text, "UserName  ");
-            Assert.AreEqual(myNewTestsPageObject.PasswordLbl.Text, "Password    ");
-            Assert.NotNull(myNewTestsPageObject.UserNameTxtFld);
-            Assert.NotNull(myNewTestsPageObject.PasswordTxtFld);
-            Assert.NotNull(myNewTestsPageObject.LoginBtn);
+            HpgAssert.AreEqual(executeAutomationLogin.LoginLink.Text, "LOGIN");
+            HpgAssert.AreEqual(executeAutomationLogin.PageTitle.Text, "Execute Automation Selenium Test Site");
+            HpgAssert.AreEqual(executeAutomationLogin.LoginTitle.Text, "Login");
+            HpgAssert.AreEqual(executeAutomationLogin.UserNameLbl.Text, "UserName  ");
+            HpgAssert.AreEqual(executeAutomationLogin.PasswordLbl.Text, "Password    ");
+            HpgAssert.Exists(executeAutomationLogin.UserNameTxtFld);
+            HpgAssert.Exists(executeAutomationLogin.PasswordTxtFld);
+            HpgAssert.Exists(executeAutomationLogin.LoginBtn);
         }
 
-        public void Login(MyNewTestsPageObject myNewTestsPageObject)
+        public void Login(ExecuteAutomationLogin executeAutomationLogin)
         {
-            myNewTestsPageObject.InputUserName("Ben");
-            myNewTestsPageObject.InputPassword("1234abc");
-            myNewTestsPageObject.ClickLoginBtn();
+            executeAutomationLogin.InputUserName(getTestData().ElementAt(1).fields["Username"]);
+            executeAutomationLogin.InputPassword(getTestData().ElementAt(1).fields["Password"]);
+            executeAutomationLogin.ClickLoginBtn();
         }
 
         [SetUp]
         public void SetUp()
         {
-            SessConfiguration = new SessionConfiguration()
-            {
-                Browser = Coypu.Drivers.Browser.Chrome
-            };
-            //DisposeBrowsers();
-            SessConfiguration.Match = Match.First;
+            BaseSetup(BaseURL, DataFile);
         }
 
         [TearDown]
         public void TearDown()
         {
-            ((BrowserSession)CurrentBrowser).Dispose();
+            BaseTearDown();
         }
     }
 }

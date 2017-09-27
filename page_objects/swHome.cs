@@ -12,9 +12,9 @@ using OpenQA.Selenium.IE;
 
 namespace Streetwise.page_objects
 {
-    class imHome : swMaster
+    class swHome : swMaster
     {
-        public imHome(BrowserSession currentBrowser) : base(currentBrowser)
+        public swHome(BrowserSession currentBrowser) : base(currentBrowser)
         {
         }
 

@@ -61,15 +61,15 @@ namespace Streetwise.tests
                     var readOnlyUsers = testUsers.Where(u => u.fields["Role"].Equals("ReadOnly") && !u.fields["Facility"].Contains("HCA/"));
                     InputObject randomReadOnlyUser = readOnlyUsers.ElementAt(rnd.Next(readOnlyUsers.Count()));
 
-                    imHome IMHome =
-                        new page_objects.imHome(
+                    swHome IMHome =
+                        new page_objects.swHome(
                             (BrowserSession)
                             BaseTest.OpenNewBrowser(
                                 randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"],
                                 randomReadOnlyUser.fields["Password"], testBrowser.Value));
                     CurrentBrowser = IMHome.browser;
                     IMHome.GotoDashboard();
-                    IMHome.SelectRole(imHome.Role.ReadOnly);
+                    IMHome.SelectRole(swHome.Role.ReadOnly);
                     System.Threading.Thread.Sleep(5000);
                     IMHome.GotoPublishedIdeas();
                     swPublishedIdeas publishedIdeas = new swPublishedIdeas(IMHome.browser);
@@ -132,7 +132,7 @@ namespace Streetwise.tests
 
                         #region setup
                         WriteInfoReport("Setup");
-                        page_objects.imHome IMHome;
+                        page_objects.swHome IMHome;
                         Dictionary<string, string> RMIAttachments = new Dictionary<string, string>();
                         string nameSuffix = string.Format("{0}.{1}", DateTime.Now.ToString("yyyyMMddHHmmss"), testBrowser.Key);
                         string saveFile = string.Format("{0}.xls", nameSuffix);
@@ -152,10 +152,10 @@ namespace Streetwise.tests
                         {
                             //true = ONLY the random read only user
                             WriteReport(string.Format("Gathering ideas for user {0}...", user.fields["FullName"]));
-                            IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(user.fields["Domain"] + "\\" + user.fields["UserID"], user.fields["Password"], testBrowser.Value));
+                            IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(user.fields["Domain"] + "\\" + user.fields["UserID"], user.fields["Password"], testBrowser.Value));
                             CurrentBrowser = IMHome.browser;
                             IMHome.GotoDashboard();
-                            IMHome.SelectRole(imHome.Role.ReadOnly);
+                            IMHome.SelectRole(swHome.Role.ReadOnly);
                             System.Threading.Thread.Sleep(3000);
                             IMHome.GotoPublishedIdeas();
                             publishedIdeas = new swPublishedIdeas(IMHome.browser);
@@ -188,11 +188,11 @@ namespace Streetwise.tests
                         #endregion
 
                         #region submitIdeas
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         SessConfiguration.AppHost = BaseURL;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Standard);
+                        IMHome.SelectRole(swHome.Role.Standard);
                         #region saveIdea
                         WriteInfoReport("Submit as Standard");
                         IMHome.GotoSubmitAnIdea();
@@ -295,10 +295,10 @@ namespace Streetwise.tests
 
                         #region EditInDCRD
                         WriteInfoReport("Edit as DCRD");
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Boss);
+                        IMHome.SelectRole(swHome.Role.Boss);
                         IMHome.GotoDashboard();
                         dashboard = new Dashboard(IMHome.browser);
                         DCRD dcrd = new DCRD(dashboard.browser);
@@ -358,11 +358,11 @@ namespace Streetwise.tests
                         #endregion
 
                         #region RespondRMISubmitter
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         SessConfiguration.AppHost = BaseURL;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Standard);
+                        IMHome.SelectRole(swHome.Role.Standard);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
                         swIdeaDetails detailspage = new swIdeaDetails(dashboard.browser);
@@ -385,10 +385,10 @@ namespace Streetwise.tests
                         #region ApproveAtDCRD
                         WriteInfoReport("Approve at DCRD");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Boss);
+                        IMHome.SelectRole(swHome.Role.Boss);
                         IMHome.GotoDashboard();
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetQueueIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
@@ -406,10 +406,10 @@ namespace Streetwise.tests
                         #region EditAsSME
                         WriteInfoReport("Edit as SME");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"], SMEUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"], SMEUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.SME);
+                        IMHome.SelectRole(swHome.Role.SME);
                         dashboard = new Dashboard(IMHome.browser);
                         submittedIdeaNumbers = dashboard.GetQueueIdeas(true, " - " + nameSuffix).Where(i => i.IdeaName.Text.EndsWith(" - " + nameSuffix)).Select(i => i.IdeaId).ToArray();
                         WriteReport(submittedIdeaNumbers.Count().ToString() + " ideas found on dashboard");
@@ -497,11 +497,11 @@ namespace Streetwise.tests
                         #region RespondRMISubmitter2
                         WriteInfoReport("Respond to SME RMI as Submitter");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         SessConfiguration.AppHost = BaseURL;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Standard);
+                        IMHome.SelectRole(swHome.Role.Standard);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
                         detailspage = new swIdeaDetails(dashboard.browser);
@@ -525,10 +525,10 @@ namespace Streetwise.tests
                         #region RespondRMIDCRD
                         WriteInfoReport("Respond to SME RMI as DCRD");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Boss);
+                        IMHome.SelectRole(swHome.Role.Boss);
                         IMHome.GotoDashboard();
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
@@ -553,10 +553,10 @@ namespace Streetwise.tests
                         #region ApproveAtSME
                         WriteInfoReport("Approve idea at SME");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"], SMEUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"], SMEUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.SME);
+                        IMHome.SelectRole(swHome.Role.SME);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetQueueIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
                         tPv = new im3PV(dashboard.browser);
@@ -611,10 +611,10 @@ namespace Streetwise.tests
                         #region DeclineAdminDeclineIdea
                         WriteInfoReport("Decline idea by Admin");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"], AdminUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"], AdminUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Admin);
+                        IMHome.SelectRole(swHome.Role.Admin);
                         System.Threading.Thread.Sleep(5000);
                         dashboard = new Dashboard(IMHome.browser);
                         tPv = new im3PV(dashboard.browser);
@@ -669,11 +669,11 @@ namespace Streetwise.tests
                         #region RespondRMISubmitter3
                         WriteInfoReport("Respond to Admin RMI as Submitter");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(standardUser.fields["Domain"] + "\\" + standardUser.fields["UserID"], standardUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         SessConfiguration.AppHost = BaseURL;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Standard);
+                        IMHome.SelectRole(swHome.Role.Standard);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
                         detailspage = new swIdeaDetails(dashboard.browser);
@@ -696,10 +696,10 @@ namespace Streetwise.tests
                         #region RespondRMIDCRD2
                         WriteInfoReport("Respond to Admin RMI as DCRD");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(DCRDUser.fields["Domain"] + "\\" + DCRDUser.fields["UserID"], DCRDUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Boss);
+                        IMHome.SelectRole(swHome.Role.Boss);
                         IMHome.GotoDashboard();
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
@@ -723,10 +723,10 @@ namespace Streetwise.tests
                         #region RespondRMISME
                         WriteInfoReport("Respond to Admin RMI as SME");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"], SMEUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"], SMEUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.SME);
+                        IMHome.SelectRole(swHome.Role.SME);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetRMIIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
                         tPv = new im3PV(dashboard.browser);
@@ -753,10 +753,10 @@ namespace Streetwise.tests
                         #region ApproveAtAdmin
                         WriteInfoReport("Approve as Admin");
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"], AdminUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"], AdminUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Admin);
+                        IMHome.SelectRole(swHome.Role.Admin);
                         dashboard = new Dashboard(IMHome.browser);
                         dashboard.GetQueueIdeas(true, " - " + nameSuffix).First(i => i.IdeaId.Equals(newIdeaNumber)).IdeaName.Click();
                         tPv = new im3PV(dashboard.browser);
@@ -821,10 +821,10 @@ namespace Streetwise.tests
                         foreach (InputObject user in readOnlyUsers.Where(u => !u.fields["UserID"].Equals(randomReadOnlyUser.fields["UserID"])))
                         {
                             IMHome.browser.Dispose();
-                            IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(user.fields["Domain"] + "\\" + user.fields["UserID"], user.fields["Password"], testBrowser.Value));
+                            IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(user.fields["Domain"] + "\\" + user.fields["UserID"], user.fields["Password"], testBrowser.Value));
                             CurrentBrowser = IMHome.browser;
                             IMHome.GotoDashboard();
-                            IMHome.SelectRole(imHome.Role.ReadOnly);
+                            IMHome.SelectRole(swHome.Role.ReadOnly);
                             System.Threading.Thread.Sleep(3000);
                             IMHome.GotoPublishedIdeas();
                             publishedIdeas = new swPublishedIdeas(IMHome.browser);
@@ -837,10 +837,10 @@ namespace Streetwise.tests
 
                         #region InSoCUser
                         IMHome.browser.Dispose();
-                        IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"], randomReadOnlyUser.fields["Password"], testBrowser.Value));
+                        IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"], randomReadOnlyUser.fields["Password"], testBrowser.Value));
                         CurrentBrowser = IMHome.browser;
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.ReadOnly);
+                        IMHome.SelectRole(swHome.Role.ReadOnly);
                         System.Threading.Thread.Sleep(5000);
                         IMHome.GotoPublishedIdeas();
                         publishedIdeas = new swPublishedIdeas(IMHome.browser);
@@ -972,8 +972,8 @@ namespace Streetwise.tests
                         WriteReport("\n~*~*~ Begin test with " + testBrowser.Key + " ~*~*~");
                         DisposeBrowsers();
                         string nameSuffix = DateTime.Now.ToString("yyyyMMddHHmmss") + "." + testBrowser.Key;
-                        page_objects.imHome IMHome =
-                            new page_objects.imHome(
+                        page_objects.swHome IMHome =
+                            new page_objects.swHome(
                                 (BrowserSession)
                                 BaseTest.OpenNewBrowser(AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"],
                                                         AdminUser.fields["Password"], testBrowser.Value));
@@ -1011,7 +1011,7 @@ namespace Streetwise.tests
 
                         //IMHome.loginIdeaManagement(BaseURL, TestUserDomain + "\\" + AdminUser);
                         IMHome.GotoDashboard();
-                        IMHome.SelectRole(imHome.Role.Admin);
+                        IMHome.SelectRole(swHome.Role.Admin);
 
                         #endregion
 
@@ -1304,13 +1304,13 @@ namespace Streetwise.tests
                             WriteInfoReport("Edit as SME");
                             IMHome.browser.Dispose();
                             IMHome =
-                                new page_objects.imHome(
+                                new page_objects.swHome(
                                     (BrowserSession)
                                     BaseTest.OpenNewBrowser(SMEUser.fields["Domain"] + "\\" + SMEUser.fields["UserID"],
                                                             SMEUser.fields["Password"], testBrowser.Value));
                             CurrentBrowser = IMHome.browser;
                             IMHome.GotoDashboard();
-                            IMHome.SelectRole(imHome.Role.SME);
+                            IMHome.SelectRole(swHome.Role.SME);
                             IMHome.GotoAllIdeas();
                             swAllIdeas allIdeas = new swAllIdeas(IMHome.browser);
                             allIdeas.GetFilter("Streetwise").Check();
@@ -1383,7 +1383,7 @@ namespace Streetwise.tests
                             WriteInfoReport("Edit as Admin");
                             IMHome.browser.Dispose();
                             IMHome =
-                                new page_objects.imHome(
+                                new page_objects.swHome(
                                     (BrowserSession)
                                     BaseTest.OpenNewBrowser(
                                         AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"],
@@ -1391,7 +1391,7 @@ namespace Streetwise.tests
                             CurrentBrowser = IMHome.browser;
                             IMHome.GotoDashboard();
                             Dashboard dashboard = new Dashboard(IMHome.browser);
-                            IMHome.SelectRole(imHome.Role.Admin);
+                            IMHome.SelectRole(swHome.Role.Admin);
                             System.Threading.Thread.Sleep(5000);
                             Dashboard.QueueIdea adminIdea =
                                 dashboard.GetQueueIdeas(IdeaId: int.Parse(rejectIdeaId))
@@ -1443,7 +1443,7 @@ namespace Streetwise.tests
                             WriteInfoReport("Search Published Ideas");
                             IMHome.browser.Dispose();
                             IMHome =
-                                new page_objects.imHome(
+                                new page_objects.swHome(
                                     (BrowserSession)
                                     BaseTest.OpenNewBrowser(
                                         randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"],
@@ -1452,7 +1452,7 @@ namespace Streetwise.tests
                             BaseTest.SessConfiguration.AppHost = BaseURL;
                             IMHome.GotoDashboard();
                             //IMHome.loginIdeaManagement(BaseURL, TestUserDomain + "\\" + CentennialUser); //Login as HCA user
-                            IMHome.SelectRole(imHome.Role.ReadOnly);
+                            IMHome.SelectRole(swHome.Role.ReadOnly);
                             IMHome.GotoPublishedIdeas();
                             page_objects.swPublishedIdeas publishedIdeas = new swPublishedIdeas(IMHome.browser);
                             publishedIdeas.SearchFor(rejectIdeaId);
@@ -1484,7 +1484,7 @@ namespace Streetwise.tests
                             dbUtility.StreetwiseImportUpdateIdea(int.Parse(rejectIdeaId), nameSuffix);
                                 //Make changes to idea in database
                             IMHome =
-                                new page_objects.imHome(
+                                new page_objects.swHome(
                                     (BrowserSession)
                                     BaseTest.OpenNewBrowser(
                                         AdminUser.fields["Domain"] + "\\" + AdminUser.fields["UserID"],
@@ -1493,7 +1493,7 @@ namespace Streetwise.tests
                             //IMHome.loginIdeaManagement(BaseURL, TestUserDomain + "\\" + AdminUser);
                             BaseTest.SessConfiguration.AppHost = BaseURL;
                             IMHome.GotoDashboard();
-                            IMHome.SelectRole(imHome.Role.Admin);
+                            IMHome.SelectRole(swHome.Role.Admin);
                             IMHome.GotoNewStreetwiseIdeas();
                             streetwiseIdeas = new imNewStreetwiseIdeas(IMHome.browser);
                             try
@@ -1525,7 +1525,7 @@ namespace Streetwise.tests
                             System.Threading.Thread.Sleep(5000);
                             IMHome.browser.Dispose();
                             IMHome =
-                                new page_objects.imHome(
+                                new page_objects.swHome(
                                     (BrowserSession)
                                     BaseTest.OpenNewBrowser(
                                         randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"],
@@ -1533,7 +1533,7 @@ namespace Streetwise.tests
                             CurrentBrowser = IMHome.browser;
                             BaseTest.SessConfiguration.AppHost = BaseURL;
                             IMHome.GotoDashboard();
-                            IMHome.SelectRole(imHome.Role.ReadOnly);
+                            IMHome.SelectRole(swHome.Role.ReadOnly);
                             IMHome.GotoPublishedIdeas();
                             publishedIdeas = new swPublishedIdeas(IMHome.browser);
                             publishedIdeas.SearchFor(rejectIdeaId);
@@ -1599,13 +1599,13 @@ namespace Streetwise.tests
 
                 #region login
                 WriteInfoReport("Login as " + randomReadOnlyUser.fields["FullName"]);
-                page_objects.imHome IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"], randomReadOnlyUser.fields["Password"], testBrowser.Value));
+                page_objects.swHome IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"], randomReadOnlyUser.fields["Password"], testBrowser.Value));
                 CurrentBrowser = IMHome.browser;
-                //page_objects.imLogin IMLogin = new page_objects.imLogin(IMHome.browser);
+                //page_objects.swLogin IMLogin = new page_objects.swLogin(IMHome.browser);
                 //IMHome.loginIdeaManagement(BaseURL, TestUserDomain + "\\" + ABQUser);
                 SessConfiguration.AppHost = BaseURL;
                 IMHome.GotoDashboard();
-                IMHome.SelectRole(imHome.Role.FacilityApprover);
+                IMHome.SelectRole(swHome.Role.FacilityApprover);
                 WriteInfoReport("Login");
                 #endregion
 
@@ -1755,7 +1755,7 @@ namespace Streetwise.tests
                         var selectIdea = pageIdeas.First(b => b.IdeaNumber == savingsIdea.IdeaId);
                         selectIdea.IdeaName.Element.Hover();
                         selectIdea.ImplementSelect.Element.Hover();
-                        imHome.SetCheckBox(selectIdea.ImplementSelect, true);
+                        swHome.SetCheckBox(selectIdea.ImplementSelect, true);
                     }
                     publishedIdeas.BulkEditImplementDropdown.SelectListOptionByText(Enums.ImplementedStatusString.First(s => s.Value.Equals(Enums.ImplementedStatus.Implemented)).Key); //Select 'Implement"
                     publishedIdeas.BulkEditImplementDateDropdown.SelectListOptionByText(grouping.Key);
@@ -1768,7 +1768,7 @@ namespace Streetwise.tests
                         var selectIdea = pageIdeas.First(b => b.IdeaNumber == savingsIdea.IdeaId);
                         selectIdea.IdeaName.Element.Hover();
                         selectIdea.ImplementSelect.Element.Hover();
-                        imHome.SetCheckBox(selectIdea.ImplementSelect, true);
+                        swHome.SetCheckBox(selectIdea.ImplementSelect, true);
                     }
                     publishedIdeas.BulkEditImplementDropdown.SelectListOptionByText(Enums.ImplementedStatusString.First(s => s.Value.Equals(Enums.ImplementedStatus.Discontinued)).Key); //Select 'Discontinue"
                     publishedIdeas.BulkEditImplementDateDropdown.SelectListOptionByText(grouping.First().Discontinued.Value.ToString("y"));
@@ -1779,11 +1779,11 @@ namespace Streetwise.tests
                 #region CheckIdeasVia3PV
                 //Login as Admin
                 IMHome.browser.Dispose();
-                IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(adminUser.fields["Domain"] + "\\" + adminUser.fields["UserID"], adminUser.fields["Password"], testBrowser.Value));
+                IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(adminUser.fields["Domain"] + "\\" + adminUser.fields["UserID"], adminUser.fields["Password"], testBrowser.Value));
                 CurrentBrowser = IMHome.browser;
                 SessConfiguration.AppHost = BaseURL;
                 IMHome.GotoDashboard();
-                IMHome.SelectRole(imHome.Role.Admin);
+                IMHome.SelectRole(swHome.Role.Admin);
                 DBUtility dbUtility = new DBUtility();
                 string sICOID = randomReadOnlyUser.fields["Facility"].Split('(').Last().Split(')').First();
                 //Navigate to each of the 9 ideas
@@ -1807,7 +1807,7 @@ namespace Streetwise.tests
                     foreach (KeyValuePair<string, im3PV.IdeaValues> ideaValue in ideaValues)
                     {
                         ideaValue.Value.ReportingType.SelectListOptionByText(savingsIdea.FacilitySavings ? "Facility Reporting" : "Corporate Reporting");
-                        imHome.SetCheckBox(ideaValue.Value.IncrementalErosion, savingsIdea.ShowNegative);
+                        swHome.SetCheckBox(ideaValue.Value.IncrementalErosion, savingsIdea.ShowNegative);
                     }
                     //Click on facility tab
                     //Verify correct facility is marked as "Implemented"
@@ -1877,11 +1877,11 @@ namespace Streetwise.tests
                 #region EnterSavingsAsUser
                 //Login as previous user
                 IMHome.browser.Dispose();
-                IMHome = new page_objects.imHome((BrowserSession)BaseTest.OpenNewBrowser(randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"], randomReadOnlyUser.fields["Password"], testBrowser.Value));
+                IMHome = new page_objects.swHome((BrowserSession)BaseTest.OpenNewBrowser(randomReadOnlyUser.fields["Domain"] + "\\" + randomReadOnlyUser.fields["UserID"], randomReadOnlyUser.fields["Password"], testBrowser.Value));
                 CurrentBrowser = IMHome.browser;
                 SessConfiguration.AppHost = BaseURL;
                 IMHome.GotoDashboard();
-                IMHome.SelectRole(imHome.Role.FacilitySavings);
+                IMHome.SelectRole(swHome.Role.FacilitySavings);
                 IMHome.GotoFacilitySavings();
                 //go thru last year's months checking monthly totals, and calculate for current year baselines
                 //Enter savings for same months last year
@@ -2039,7 +2039,7 @@ namespace Streetwise.tests
                 WriteReport("~*~*~ Begin test with " + testBrowser.Key + " ~*~*~");
                 DisposeBrowsers();
                 
-                page_objects.imHome IMHome = new page_objects.imHome((BrowserSession) BaseTest.OpenNewBrowser("DOMAIN\\USERNAME", "T3st5678", testBrowser.Value));
+                page_objects.swHome IMHome = new page_objects.swHome((BrowserSession) BaseTest.OpenNewBrowser("DOMAIN\\USERNAME", "T3st5678", testBrowser.Value));
                 CurrentBrowser = IMHome.browser;
                 //IMHome.GotoHomePage();
                 IMHome.GotoDashboard();
