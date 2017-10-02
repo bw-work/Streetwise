@@ -45,76 +45,54 @@ namespace Streetwise.page_objects
         }
 
         #region Objects
-
-        public HpgElement SearchIdeaID
+        
+        public HpgElement ClearRefinementsTxt
         {
             get
             {
-                return new HpgElement(browser.FindId("Search"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span12 > div > div:nth-child(2) > div > button.btn-link.clearSearchLink"));
             }
         }
 
-        public HpgElement SearchIdeaName
+        public HpgElement SearchField
         {
             get
             {
-                return new HpgElement(browser.FindId("ideaNameSearch"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span12 > div > div:nth-child(2) > div > input"));
             }
         }
 
-        public HpgElement FilterButton
+        public HpgElement SearchButton
         {
             get
             {
-                return new HpgElement(browser.FindId("btnSearch"));
+                return new HpgElement(browser.FindButton("Search"));
             }
         }
 
-        public HpgElement ClearFilterButton
+        public HpgElement SortByTxt
         {
             get
             {
-                return new HpgElement(browser.FindId("btnReset"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span9 > div.fixed-scroll > div.resultHeaderBackground > div > div.span5 > div > strong"));
             }
         }
 
-        public HpgElement FilterMoreDepartments
+        public HpgElement SortByDropdown
         {
             get
             {
-                return new HpgElement(browser.FindId("showMoreDepartments"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span9 > div.fixed-scroll > div.resultHeaderBackground > div > div.span5 > div > select"));
             }
         }
 
-        public HpgElement FilterMoreCategories
-        {
-            get
-            {
-                return new HpgElement(browser.FindId("showMoreCategories"));
-            }
-        }
 
-        public HpgElement FilterRecordCount
-        {
-            get
-            {
-                return new HpgElement(browser.FindId("Recordcount"));
-            }
-        }
-
-        public int FilterRecordCountInt
-        {
-            get
-            {
-                return int.Parse(new string(FilterRecordCount.Text.Where(Char.IsDigit).ToArray()));
-            }
-        }
 
         public HpgElement LinkExcel
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//*[@id='PublishedIdeaForm']//a[contains(@href, 'ExportExcel')]"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span3 > ul > li:nth-child(2) > form > input[type=\"image\"]"));
             }
         }
 
@@ -122,143 +100,1046 @@ namespace Streetwise.page_objects
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//*[@id='PublishedIdeaForm']//a[contains(@href, 'ExportPDF')]"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span3 > ul > li:nth-child(1) > form > input[type=\"image\"]"));
             }
         }
 
-        public HpgElement PageSize
+        public HpgElement RecordCountTxt
         {
             get
             {
-                return new HpgElement(browser.FindId("pageSize"));
+                return new HpgElement(browser.FindId("Recordcount"));
             }
         }
 
-
-        public HpgElement BulkEditLink
+        public HpgElement RefineResultsTxt
         {
             get
             {
-                return new HpgElement(browser.FindLink("Bulk Update"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span3 > div > h2"));
             }
         }
 
-        public HpgElement BulkEditSelectAllCheckbox
+        public HpgElement MyBookmarksChkBox
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//input[@ng-model='selectAllChecked']"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span3 > div > label > input[type=\"checkbox\"]"));
             }
         }
 
-        public HpgElement BulkEditImplementDropdown
+        public HpgElement MyBookmarksTxt
         {
             get
             {
-                return new HpgElement(browser.FindField("bulkImplementationStatusSelect"));
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span3 > div > label"));
             }
         }
 
-        public HpgElement BulkEditImplementDateDropdown
+        public HpgElement PublishedDateRangeTxt
         {
             get
             {
-                return new HpgElement(browser.FindId("bulkImplementationDate"));
+                return new HpgElement(browser.FindCss("#IdeaDateRangeDiv > h5"));
             }
         }
 
-        public HpgElement BulkEditApplyButton
+        public HpgElement IdeaDateRangeStart
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//button[@ng-click='applyImplementationStatus()']"));
+                return new HpgElement(browser.FindId("ideaDateRangeStart"));
             }
         }
 
-        public HpgElement BulkEditSuccessMessage
+        public HpgElement IdeaDataRangeEnd
         {
             get
             {
-                return new HpgElement(browser.FindXPath("//div[@ng-show='postbackSucceeded']/span"));
+                return new HpgElement(browser.FindId("ideaDateRangeEnd"));
             }
         }
+
+        public HpgElement ReloadIdeasBasedOnRangeButton
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#IdeaDateRangeDiv > button"));
+            }
+        }
+
+        public HpgElement UpdatedDateTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span3 > div > h5"));
+            }
+        }
+
+        public HpgElement UpdateDateDropdown
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("updateDateSelect"));
+            }
+        }
+
+        public HpgElement DepartmentTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > h5:nth-child(1)"));
+            }
+        }
+
+        public HpgElement ShowMoreDepartmentsButton
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("showMoreDepartments"));
+            }
+        }
+
+        public HpgElement ShowLessDepartmentsButton
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("showLessDepartments"));
+            }
+        }
+
+        public HpgElement ShowMoreCategoriesButton
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("showMoreCategories"));
+            }
+        }
+
+        public HpgElement ShowLessCategoriesButton
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("showLessCategories"));
+            }
+        }
+
+        public HpgElement AnyDepartmentCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(1) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement AnyDepartmentTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(1)"));
+            }
+        }
+
+        public HpgElement BusinessCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(2) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement BusinessTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(2)"));
+            }
+        }
+
+        public HpgElement CardiovascularServicesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(3) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CardiovascularServicesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(3)"));
+            }
+        }
+
+        public HpgElement CentralSterileProcessingCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(4) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CentralSterileProcessingTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(4)"));
+            }
+        }
+
+        public HpgElement ContractConversionCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(5) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ContractConversionTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(5)"));
+            }
+        }
+
+        public HpgElement EmergencyServicesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(6) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement EmergencyServicesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(6)"));
+            }
+        }
+
+        public HpgElement EndoscopyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(7) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement EndoscopyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(7)"));
+            }
+        }
+
+        public HpgElement EnvironmentalServicesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(8) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement EnvironmentalServicesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(8)"));
+            }
+        }
+
+        public HpgElement FacilitySafetyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(9) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement FacilitySafetyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(9)"));
+            }
+        }
+
+        public HpgElement FoodNutritionServicesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(10) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement FoodNutritionServicesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(10)"));
+            }
+        }
+
+        public HpgElement ImagingCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(11) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ImagingTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(11)"));
+            }
+        }
+
+        public HpgElement LaboratoryCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(12) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement LaboratoryTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(12)"));
+            }
+        }
+
+        public HpgElement MaterialManagementCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(13) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement MaterialManagementTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(13)"));
+            }
+        }
+
+        public HpgElement NICUPediatricsCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(14) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement NICUPediatricsTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(14)"));
+            }
+        }
+
+        public HpgElement NursingServicesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(15) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement NursingServicesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(15)"));
+            }
+        }
+
+        public HpgElement ObstetricsPerinatalCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(16) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ObstetricsPerinatalTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(16)"));
+            }
+        }
+
+        public HpgElement OtherClinicalServiceCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(17) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement OtherClinicalServiceTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(17)"));
+            }
+        }
+
+        public HpgElement OtherSupportServiceCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(18) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement OtherSupportServiceTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(18)"));
+            }
+        }
+
+        public HpgElement PharmacyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(19) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement PharmacyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(19)"));
+            }
+        }
+
+        public HpgElement PhysicianReferenceContractsCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(20) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement PhysicianReferenceContractsTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(20)"));
+            }
+        }
+
+        public HpgElement DepartmentProductFormularyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(21) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement DepartmentProductFormularyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(21)"));
+            }
+        }
+
+        public HpgElement RadiologyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(22) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement RadiologyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(22)"));
+            }
+        }
+
+        public HpgElement RespiratoryTherapyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(23) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement RespiratoryTherapyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(23)"));
+            }
+        }
+
+        public HpgElement SurgicalServicesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(24) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement SurgicalServicesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#departments > label:nth-child(24)"));
+            }
+        }
+
+        public HpgElement CategoryTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > h5:nth-child(6)"));
+            }
+        }
+
+        public HpgElement APInfrastructureCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(1) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement APInfrastructureTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(1)"));
+            }
+        }
+
+        public HpgElement BloodCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(2) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement BloodTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(2)"));
+            }
+        }
+
+        public HpgElement CapitalAcquisitionCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(3) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CapitalAcquisitionTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(3)"));
+            }
+        }
+
+        public HpgElement CommoditiesCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(4) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CommoditiesTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(4)"));
+            }
+        }
+
+        public HpgElement CommodityPharmacyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(5) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CommodityPharmacyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(5)"));
+            }
+        }
+
+        public HpgElement CVATCostAvoidanceCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(6) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CVATCostAvoidanceTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(6)"));
+            }
+        }
+
+        public HpgElement CVATCostSavingsCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(7) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CVATCostSavingsTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(7)"));
+            }
+        }
+
+        public HpgElement DivManagedDisintermediationCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(8) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement DivManagedDisintermediationTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(8)"));
+            }
+        }
+
+        public HpgElement DivisionBasedContractingCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(9) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement DivisionBasedContractingTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(9)"));
+            }
+        }
+
+        public HpgElement HCAPharmacyOperationsProjectCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(10) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement HCAPharmacyOperationsProjectTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(10)"));
+            }
+        }
+
+        public HpgElement HPGSIPCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(11) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement HPGSIPTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(11)"));
+            }
+        }
+
+        public HpgElement HTRoadmapCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(12) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement HTRoadmapTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(12)"));
+            }
+        }
+
+        public HpgElement NonSupplyExpenseSavingsCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(13) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement NonSupplyExpenseSavingsTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(13)"));
+            }
+        }
+
+        public HpgElement ORCostPerCaseCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(14) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ORCostPerCaseTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(14)"));
+            }
+        }
+
+        public HpgElement CategoryProductFormularyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(15) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement CategoryProductFormularyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(15)"));
+            }
+        }
+
+        public HpgElement RoadMapPharmacy2017CheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(16) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement RoadMapPharmacy2017Txt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(16)"));
+            }
+        }
+
+        public HpgElement RoadMapReprocessing2017CheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(17) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement RoadMapReprocessing2017Txt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(17)"));
+            }
+        }
+
+        public HpgElement RoadMap2015CheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(18) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement RoadMap2015Txt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(18)"));
+            }
+        }
+
+        public HpgElement SMATCostAvoidanceCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(19) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement SMATCostAvoidanceTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(19)"));
+            }
+        }
+
+        public HpgElement SupportServicesEVSCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(20) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement SupportServicesEVSTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(20)"));
+            }
+        }
+
+        public HpgElement SupportServicesFoodCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(21) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement SupportServicesFoodTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(21)"));
+            }
+        }
+
+        public HpgElement TechnologyCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(22) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement TechnologyTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(22)"));
+            }
+        }
+
+        public HpgElement ThirdPartyFreightManagementCheckBox
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(23) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ThirdPartyFreightManagementTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#categories > label:nth-child(23)"));
+            }
+        }
+
+        public HpgElement ImpactTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > h5:nth-child(11)"));
+            }
+        }
+
+        public HpgElement ImpactCheckBox1
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > label:nth-child(12) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ImpactCheckBox2
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > label:nth-child(13) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement ImpactCheckBox3
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > label:nth-child(14) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement EffortTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > h5:nth-child(11)"));
+            }
+        }
+
+        public HpgElement EffortCheckBox1
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > label:nth-child(17) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement EffortCheckBox2
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > label:nth-child(18) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement EffortCheckBox3
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#filter > label:nth-child(19) > input[type=\"checkbox\"]"));
+            }
+        }
+
+        public HpgElement MoreIdeasButton
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("infiniteLinkText"));
+            }
+        }
+
+        public HpgElement RefinementsTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#PublishedIdeasListController > div.span9 > div.fixed-scroll > div.row > div > div > h4"));
+            }
+        }
+
+
 
         #endregion
 
-
-
         #region Actions
 
-        public void BulkEditApplyCuttonClick()
-        {
-            BulkEditApplyButton.Element.Hover();
-            BulkEditApplyButton.Click();
-            System.Threading.Thread.Sleep(10000);
-        }
+        //public void BulkEditApplyCuttonClick()
+        //{
+        //    BulkEditApplyButton.Element.Hover();
+        //    BulkEditApplyButton.Click();
+        //    System.Threading.Thread.Sleep(10000);
+        //}
 
-        public void ShowBulkEdit()
-        {
-            if(!BulkEditImplementDropdown.Element.Exists(new Options(){Timeout = TimeSpan.FromSeconds(1)})) BulkEditLink.Click();
-            HpgAssert.True(BulkEditImplementDropdown.Element.Exists(), "Bulk Change Drop Down is visible");
-        }
+        //public void ShowBulkEdit()
+        //{
+        //    if(!BulkEditImplementDropdown.Element.Exists(new Options(){Timeout = TimeSpan.FromSeconds(1)})) BulkEditLink.Click();
+        //    HpgAssert.True(BulkEditImplementDropdown.Element.Exists(), "Bulk Change Drop Down is visible");
+        //}
 
-        public void SaveExcel(string saveFileName)
-        {
-            browser.SaveWebResource(LinkExcel.Element["href"], saveFileName);
-        }
+        //public void SaveExcel(string saveFileName)
+        //{
+        //    browser.SaveWebResource(LinkExcel.Element["href"], saveFileName);
+        //}
 
-        public void ShowAllDepartments()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                FilterMoreDepartments.Element.Hover();
-                FilterMoreDepartments.Click();
-                if (FilterMoreDepartments.Element.Missing())
-                {
-                    break;
-                }
-            }
-            HpgAssert.True(FilterMoreDepartments.Element.Missing(), "Show More Departments selected");
-        }
+        //public void ShowAllDepartments()
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        FilterMoreDepartments.Element.Hover();
+        //        FilterMoreDepartments.Click();
+        //        if (FilterMoreDepartments.Element.Missing())
+        //        {
+        //            break;
+        //        }
+        //    }
+        //    HpgAssert.True(FilterMoreDepartments.Element.Missing(), "Show More Departments selected");
+        //}
 
-        public void ShowAllCategories()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                FilterMoreCategories.Element.Hover();
-                FilterMoreCategories.Click();
-                if (FilterMoreCategories.Element.Missing())
-                {
-                    break;
-                }
-            }
-            HpgAssert.True(FilterMoreCategories.Element.Missing(), "Show More Categories selected");
-        }
+        //public void ShowAllCategories()
+        //{
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        FilterMoreCategories.Element.Hover();
+        //        FilterMoreCategories.Click();
+        //        if (FilterMoreCategories.Element.Missing())
+        //        {
+        //            break;
+        //        }
+        //    }
+        //    HpgAssert.True(FilterMoreCategories.Element.Missing(), "Show More Categories selected");
+        //}
 
-        public HpgElement GetDepartmentFilter(string department)
-        {
-            return new HpgElement(browser.FindXPath("//ul[@id='departments']//a[.='" + department + "']"));
-        }
+        //public HpgElement GetDepartmentFilter(string department)
+        //{
+        //    return new HpgElement(browser.FindXPath("//ul[@id='departments']//a[.='" + department + "']"));
+        //}
 
-        public HpgElement GetCategoryFilter(string category)
-        {
-            return new HpgElement(browser.FindXPath("//ul[@id='categories']//a[.='" + category + "']"));
-        }
+        //public HpgElement GetCategoryFilter(string category)
+        //{
+        //    return new HpgElement(browser.FindXPath("//ul[@id='categories']//a[.='" + category + "']"));
+        //}
 
-        public HpgElement GetEffortFilter(int level)
-        {
-            return new HpgElement(browser.FindXPath("//li[count(span[@id='level'])=" + level.ToString() + "]/a[contains(@id, 'Effort')]"));
-        }
+        //public HpgElement GetEffortFilter(int level)
+        //{
+        //    return new HpgElement(browser.FindXPath("//li[count(span[@id='level'])=" + level.ToString() + "]/a[contains(@id, 'Effort')]"));
+        //}
 
-        public HpgElement GetImpactFilter(int level)
-        {
-            return new HpgElement(browser.FindXPath("//li[count(span[@id='level'])=" + level.ToString() + "]/a[contains(@id, 'Impact')]"));
-        }
+        //public HpgElement GetImpactFilter(int level)
+        //{
+        //    return new HpgElement(browser.FindXPath("//li[count(span[@id='level'])=" + level.ToString() + "]/a[contains(@id, 'Impact')]"));
+        //}
 
-        public HpgElement GetUpdatedDateFilter(int filter)
-        {
-            return new HpgElement(browser.FindXPath("//ul[@id='updateDiate']/li[" + filter.ToString() + "]/a"));
-        }
+        //public HpgElement GetUpdatedDateFilter(int filter)
+        //{
+        //    return new HpgElement(browser.FindXPath("//ul[@id='updateDiate']/li[" + filter.ToString() + "]/a"));
+        //}
 
         public DataTable GetPublishedIdeasDT()
         {
@@ -294,6 +1175,29 @@ namespace Streetwise.page_objects
             return returnTable;
         }
 
+        //Used to grab only the first card for assertion purposes
+        //public PublishedIdea GetPublishedIdeas()
+        //{
+        //    browser.FindCss("#IdeasCardRowsDiv > div > div:nth-child(1) > div > div:nth-child(1) > div", new Options() { Match = Match.First, Timeout = TimeSpan.FromSeconds(90) }).Exists();
+        //    PublishedIdea returnIdea = new PublishedIdea();
+
+        //    foreach (SnapshotElementScope row in browser.FindCss("#IdeasCardRowsDiv > div > div:nth-child(1) > div > div:nth-child(1) > div"))
+        //    {
+        //        returnIdea.Bookmark = new HpgElement(row.FindCss("a[ng-tooltip='Bookmark Idea']"));
+        //        returnIdea.IdeaName = new HpgElement(row.FindCss("a[class='toggle ng-binding']"));
+        //        returnIdea.IdeaNumber = int.Parse(returnIdea.IdeaName.Text.Trim().Split('-')[0].Trim());
+        //        returnIdea.Updated = DateTime.Parse(row.FindCss("p[class='pull-right autoUpdated']").Text.Replace("Updated:", "").Trim());
+        //        returnIdea.Category = row.FindCss("p[class='autoCategory ng-binding']").Text.Replace("Category:", "").Trim();
+        //        returnIdea.Department = row.FindCss("p[class='autoDepartment ng-binding']").Text.Replace("Department:", "").Trim();
+        //        returnIdea.Impact = row.FindAllCss("i[class='icon-usd']").Count();
+        //        returnIdea.ImpactLevel = Enums.levels[returnIdea.Impact];
+        //        returnIdea.Effort = row.FindAllCss("i[class='icon-wrench']").Count();
+        //        returnIdea.EffortLevel = Enums.levels[returnIdea.Effort];
+        //    }
+            
+        //    return returnIdea;
+        //}
+
         public List<PublishedIdea> GetPublishedIdeas(bool ScrollToBottom = true)
         {
             if(ScrollToBottom) base.ScrollToBottom();
@@ -303,15 +1207,15 @@ namespace Streetwise.page_objects
             foreach (SnapshotElementScope row in browser.FindAllXPath("//div[@class='cardResult']"))
             {
                 PublishedIdea addIdea = new PublishedIdea();
-                addIdea.Bookmark = new HpgElement(row.FindXPath(".//a[@ng-tooltip='Bookmark Idea']"));
-                addIdea.IdeaName = new HpgElement(row.FindXPath(".//h3[contains(@class, 'autoTitle')]/a"));
+                addIdea.Bookmark = new HpgElement(row.FindCss("a[ng-tooltip='Bookmark Idea']"));
+                addIdea.IdeaName = new HpgElement(row.FindCss("a[class='toggle ng-binding']"));
                 addIdea.IdeaNumber = int.Parse(addIdea.IdeaName.Text.Trim().Split('-')[0].Trim());
-                addIdea.Updated = DateTime.Parse(row.FindXPath(".//p[contains(@class, 'autoUpdated')]").Text.Replace("Updated:", "").Trim());
-                addIdea.Category = row.FindXPath(".//p[contains(@class, 'autoCategory')]").Text.Replace("Category:", "").Trim();
-                addIdea.Department = row.FindXPath(".//p[contains(@class, 'autoDepartment')]").Text.Replace("Department:", "").Trim();
-                addIdea.Impact = row.FindAllXPath(".//i[contains(@class, 'icon-usd')]").Count();
+                addIdea.Updated = DateTime.Parse(row.FindCss("p[class='pull-right autoUpdated']").Text.Replace("Updated:", "").Trim());
+                addIdea.Category = row.FindCss("p[class='autoCategory ng-binding']").Text.Replace("Category:", "").Trim();
+                addIdea.Department = row.FindCss("p[class='autoDepartment ng-binding']").Text.Replace("Department:", "").Trim();
+                addIdea.Impact = row.FindAllCss("i[class='icon-usd']").Count();
                 addIdea.ImpactLevel = Enums.levels[addIdea.Impact];
-                addIdea.Effort = row.FindAllXPath(".//i[contains(@class, 'icon-wrench')]").Count();
+                addIdea.Effort = row.FindAllCss("i[class='icon-wrench']").Count();
                 addIdea.EffortLevel = Enums.levels[addIdea.Effort];
                 returnList.Add(addIdea);
             }
@@ -357,15 +1261,15 @@ namespace Streetwise.page_objects
         private CFApPublishedIdea ToPublishedIdea(HpgElement card)
         {
             CFApPublishedIdea addIdea = new CFApPublishedIdea();
-            addIdea.Bookmark = new HpgElement(card.Element.FindXPath(".//a[@ng-tooltip='Bookmark Idea']"));
-            addIdea.IdeaName = new HpgElement(card.Element.FindXPath(".//h3[contains(@class, 'autoTitle')]/a"));
+            addIdea.Bookmark = new HpgElement(card.Element.FindCss("a[ng-tooltip='Bookmark Idea']"));
+            addIdea.IdeaName = new HpgElement(card.Element.FindCss("a[class='toggle ng-binding']"));
             addIdea.IdeaNumber = int.Parse(addIdea.IdeaName.Text.Trim().Split('-')[0].Trim());
-            addIdea.Updated = DateTime.Parse(card.Element.FindXPath(".//p[contains(@class, 'autoUpdated')]").Text.Replace("Updated:", "").Trim());
-            addIdea.Category = card.Element.FindXPath(".//p[contains(@class, 'autoCategory')]").Text.Replace("Category:", "").Trim();
-            addIdea.Department = card.Element.FindXPath(".//p[contains(@class, 'autoDepartment')]").Text.Replace("Department:", "").Trim();
-            addIdea.Impact = card.Element.FindAllXPath(".//i[contains(@class, 'icon-usd')]").Count();
+            addIdea.Updated = DateTime.Parse(card.Element.FindCss("p[class='pull-right autoUpdated']").Text.Replace("Updated:", "").Trim());
+            addIdea.Category = card.Element.FindCss("p[class='autoCategory ng-binding']").Text.Replace("Category:", "").Trim();
+            addIdea.Department = card.Element.FindCss("p[class='autoDepartment ng-binding']").Text.Replace("Department:", "").Trim();
+            addIdea.Impact = card.Element.FindAllCss("i[class='icon-usd']").Count();
             addIdea.ImpactLevel = Enums.levels[addIdea.Impact];
-            addIdea.Effort = card.Element.FindAllXPath(".//i[contains(@class, 'icon-wrench')]").Count();
+            addIdea.Effort = card.Element.FindAllCss("i[class='icon-wrench']").Count();
             addIdea.EffortLevel = Enums.levels[addIdea.Effort];
             addIdea.ImplementSelect = new HpgElement(card.Element.FindXPath(".//input[@ng-model='idea.updateImplementationStatus']"));
             addIdea.ImplementedStatus = Enums.ImplementedStatusString[card.Element.FindXPath(".//p[@class='autoImplementedStatus']/span").Text.Trim()];

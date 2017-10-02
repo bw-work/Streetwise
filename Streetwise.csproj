@@ -38,6 +38,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="page_assertions\BaseAssertions.cs" />
+    <Compile Include="page_assertions\LoginPageAssertions.cs" />
+    <Compile Include="page_assertions\MyDashboardAssertions.cs" />
+    <Compile Include="page_assertions\PublishedIdeasAssertions.cs" />
     <Compile Include="page_objects\ExecuteAutomationLogin.cs" />
     <Compile Include="page_objects\Categories.cs" />
     <Compile Include="page_objects\ConfigMaster.cs" />

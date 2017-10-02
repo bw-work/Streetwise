@@ -40,6 +40,16 @@ namespace Streetwise.page_objects
                 return new HpgElement(browser.FindId("role"));
             }
         }
+
+        //Not sure if homepage has changed, addind what I currently see on prod here
+
+        public HpgElement Login
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#content > div.stripe > div > div > div > div.span7 > p > a.loginLink"));
+            }
+        }
         
         #endregion
 

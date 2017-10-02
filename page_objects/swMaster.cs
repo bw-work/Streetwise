@@ -32,6 +32,14 @@ namespace Streetwise.page_objects
             }
         }
 
+        public HpgElement HealthtrustLogo
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#content > div.pageHeader > div > div > div > div.span4 > a > img"));
+            }
+        }
+
         public HpgElement pageHeader
         {
             get
@@ -200,7 +208,7 @@ namespace Streetwise.page_objects
         public void GotoSubmitAnIdea()
         {
             TabSubmitAnIdea.Click();
-            //HpgAssert.Contains(pageHeader.Text, "Submit an Idea", "Verify 'Submit Idea' page is loaded");
+            HpgAssert.Contains(pageHeader.Text, "Submit an Idea", "Verify 'Submit Idea' page is loaded");
             WaitForThrobber();
             HpgAssert.True(browser.FindId("ideaSubmit").Exists(), "Verify 'Submit Idea' page is loaded");
             AutomationCore.base_tests.BaseTest.WriteReport("Navigated to Submit Idea page");

@@ -40,6 +40,102 @@ namespace Streetwise.page_objects
 
         #region Objects
 
+        public HpgElement NewsFeedTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div > div.widgetHeader > a > h3"));
+            }
+        }
+
+        public HpgElement NewsFeedBadge
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div > div.widgetHeader > a > span.badge.badge-info.ng-binding"));
+            }
+        }
+
+        public HpgElement RequiredInformationNeededFlag
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div > div.widgetHeader > a > img"));
+            }
+        }
+
+        public HpgElement RequiredInformationNeededTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div > div.widgetHeader > a > h3"));
+            }
+        }
+
+        public HpgElement RequiredInformationNeededBadge
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div > div.widgetHeader > a > span"));
+            }
+        }
+
+        public HpgElement IdeasReadyForReviewTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div > div.widgetHeader > a > h3"));
+            }
+        }
+
+        public HpgElement IdeasReadyForReviewBadge
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div > div.widgetHeader > a > span"));
+            }
+        }
+
+        public HpgElement MyBookmarkedIdeasTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div.widgetHeader > a > h3"));
+            }
+        }
+
+        public HpgElement MyBookmarkedIdeasBadge
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div.widgetHeader > a > span"));
+            }
+        }
+
+        public HpgElement MyBookmarkedIdeasWidget
+        {
+            get
+            {
+                return new HpgElement(browser.FindId("bookmarkedIdeasWidget"));
+            }
+        }
+
+        public HpgElement MySavedIdeasTxt
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div.widgetHeader > a > h3"));
+            }
+        }
+
+        public HpgElement MySavedIdeasBadge
+        {
+            get
+            {
+                return new HpgElement(browser.FindCss("#ng-app > div > div > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div > div.widgetHeader > a > span"));
+            }
+        }
+
         public HpgElement QueueWidget
         {
             get

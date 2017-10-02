@@ -67,7 +67,6 @@ C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\Syst
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\WebDriver.xml
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\bin\Debug\WebDriver.Support.xml
-C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.csprojResolveAssemblyReference.cache
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.csproj.ResolveComReference.cache
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.csproj.CoreCompileInputs.cache
 C:\Users\bwagner\Documents\Visual Studio 2017\Projects\Streetwise\obj\Debug\Streetwise.dll

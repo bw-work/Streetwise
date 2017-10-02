@@ -39,14 +39,5 @@ namespace Streetwise.tests
         {
             return TestData;
         }
-
-        public void Login()
-        {
-            swLogin login = new swLogin(Browser);
-            login.UserNameTxtField.Type(getTestData().ElementAt(0).fields["Username"]);
-            login.PasswordTxtField.Type(getTestData().ElementAt(0).fields["Password"]);
-            login.RememberEmailOrUserIDCheckBox.Click();
-            login.loginButton.Click();
-        }
     }
 }
